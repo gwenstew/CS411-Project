@@ -3,7 +3,7 @@
 
 2) Product Requirements:
 Goal: Create a user-friendly web application that suggests recipes and creates cooking playlists.
-Non-Goal:
+Non-Goal: Focusing on the ability to easily implement new API’s or functionality before the core project is complete/robust.
 Non-functional Requirement 1: Security
 Implement OAuth authentication for Spotify login.
 Implement Google OAuth for secure authentication using college email addresses.
@@ -13,7 +13,7 @@ Certain Recipes will have the same playlist every time
 
 
 3) Product Management:
-Theme:
+Theme: Simple and intuitive recipes to help college students cook less stressfully.
 Epic: Website Beta
 User Story 1: As a college student, I want to discover recipes based on the ingredients I have available
 Task: Implement Recipe Recommendation System
@@ -21,14 +21,18 @@ Ticket 1: Integrate Spoonacular API
 Retrieve recipe suggestions based on available ingredients
 User Story 2: I want playlists that accompany my meal preparation.
 Task: Integrate Spotify API
-To create playlists based on cooking tim
+To create playlists based on cooking time
 User Story 3: As a new user, I want to feel comfortable using my Spotify  and Google login on another website.
 Task: Use APIs securely
 Ticket 1: Safely store environment variables, make sure that our API keys aren’t leaking on the web
-Research and implement the current best practice appropriate for <my technology here>
+Encryption
+Use secure storage solutions for APIs and have proper access controls
+Only grant minimum access for APIs to accomplish their task and filter out private info when data is returned
+
 Ticket 2: Implement OAuth login for Spotify and Google
 User Story 4: As a repeat user, I want to be able to make my past recipes
 Task: Make previous recipes repeatable
 Ticket 1: Design and create a DB appropriate for storing previous recipe recommendations
 Design and create an appropriate DB in SQLITE
 Ticket 2: Implement a DB DAO
+
