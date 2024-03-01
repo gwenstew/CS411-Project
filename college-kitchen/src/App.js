@@ -18,6 +18,8 @@ function App() {
           Learn React
         </a>
       </header>
+      {/*API CALL*/}
+      /* fetch("spoonacular.com/api&key="process.env.SPOONACULAR") */
     </div>
   );
 }
