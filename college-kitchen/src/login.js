@@ -9,7 +9,6 @@ const Login = (props) => {
 
   const navigate = useNavigate()
 
-  const onButtonClick = () => {
     const onButtonClick = () => {
         // Set initial error values to empty
         setEmailError('')
@@ -38,8 +37,7 @@ const Login = (props) => {
       
         // Authentication calls will be made here...
       }
-  }
-
+  
   return (
     <div className={'mainContainer'}>
       <div className={'titleContainer'}>
