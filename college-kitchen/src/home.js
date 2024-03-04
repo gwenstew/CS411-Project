@@ -6,7 +6,12 @@ const Home = (props) => {
   const navigate = useNavigate()
 
   const onButtonClick = () => {
-    // You'll update this function later
+    if (loggedIn) {
+      localStorage.removeItem('user')
+      props.setLoggedIn(false)
+    } else {
+      navigate('/login')
+    }
   }
 
   return (
