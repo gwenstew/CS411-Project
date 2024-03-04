@@ -9,8 +9,8 @@ function App() {
   const [email, setEmail] = useState('')
   return (
     <div className="App">
-      <h1> Hello World </h1>
-      <h2> Static Web Page </h2>
+      <h1> College Kitchen </h1>
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
