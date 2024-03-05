@@ -1,5 +1,6 @@
+import { get } from 'express/lib/request';
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyArNaWNiI7dlCQZi1b9lIEQa4pDsroW6KE",
@@ -12,5 +13,7 @@ const firebaseConfig = {
     measurementId: "G-KRB5DSBN00"
   };
   
+  // initialize firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  // initialize firebase authentication
+  const auth = getAuth(app);
