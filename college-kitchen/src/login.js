@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { formatResponseError } from '@ionic/cli/lib/http'
 
 const Login = (props) => {
   const [email, setEmail] = useState('')
