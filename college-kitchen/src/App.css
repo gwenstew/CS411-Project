@@ -76,3 +76,90 @@
   border: 1px solid grey;
   padding-left: 8px;
 }
+
+.google-button {
+  padding: 5px 10px;
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* HOME PAGE STYLING */
+.container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  height: 100vh; 
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile {
+  display: flex;
+}
+
+.pantry-button,
+.favorites-button {
+  padding: 10px;
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px; /* Add margin between pantry and favorites buttons */
+  text-decoration: none;
+}
+
+.search-container {
+  margin-top: 20px;
+}
+
+.search-container input[type="text"] {
+  width: 300px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.search-container button {
+  padding: 5px 10px;
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/* RECIPE GRID STYLING */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.recipe-item {
+  cursor: pointer;
+}
+
+.recipe-item img {
+  width: 100%;
+  height: auto;
+}
+
+.recipe-item p {
+  text-align: center;
+}
