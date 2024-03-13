@@ -8,6 +8,7 @@ import Home from './home';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [email, setEmail] = useState('');
+  const [user, setUser] = useState(null);
  
   return (
     <div className="App">
