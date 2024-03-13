@@ -6,9 +6,7 @@ const Home = () => {
       <header>
         <h1>Home Page</h1>
       </header>
-      <main>
-        <img src="https://via.placeholder.com/300" alt="Placeholder" />
-      </main>
+      
     </div>
   );
 }
