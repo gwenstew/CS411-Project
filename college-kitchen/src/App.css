@@ -77,6 +77,14 @@
   padding-left: 8px;
 }
 
+.google-button {
+  padding: 5px 10px;
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
 /* HOME PAGE STYLING */
 .container {
   display: flex;
@@ -100,7 +108,7 @@
 .pantry-button,
 .favorites-button {
   padding: 10px;
-  background-color: cornflowerblue;
+  background-color: tomato;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -120,14 +128,14 @@
 
 .search-container button {
   padding: 5px 10px;
-  background-color: cornflowerblue;
+  background-color: tomato;
   color: #fff;
   border: none;
   cursor: pointer;
 }
 
 .back-button {
-  background-color: cornflowerblue;
+  background-color: tomato;
   color: #fff;
   border: none;
   cursor: pointer;

@@ -1,3 +1,4 @@
+import './App.css'
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -32,7 +33,7 @@ function SignIn() {
         </div>
           <div>Simplifying college cooking, one ingredient at a time. </div>
       <div className={'buttonContainer'}>
-        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+        <button className="google-button" onClick={handleGoogleSignIn}>Sign in with Google</button>
       </div>
     </div>
   
