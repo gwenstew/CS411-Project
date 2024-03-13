@@ -59,8 +59,15 @@ const Home = () => {
           {selectedRecipe ? (
             <div>
               <h2>{selectedRecipe.title}</h2>
-              <img src={`https://spoonacular.com/recipeImages/${selectedRecipe.id}-636x393.jpg`} alt={selectedRecipe.title} />
-              <p>{selectedRecipe.instructions}</p>
+              <img src={selectedRecipe.image} alt={selectedRecipe.title} />
+              <h3>Ingredients:</h3>
+              <ul>
+                {selectedRecipe.extendedIngredients.map(ingredient => (
+                  <li key={ingredient.id}>{ingredient.original}</li>
+                ))}
+              </ul>
+              <h3>Instructions:</h3>
+              <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
               <button onClick={handleGoBack}>Go Back</button>
             </div>
           ) : (
