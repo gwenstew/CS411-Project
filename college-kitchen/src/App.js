@@ -18,10 +18,9 @@ function App() {
       <h1> College Kitchen </h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/home" element={<Home loggedIn={loggedIn} />} />
-
+          <Route path="/" element={<SignIn/>}></Route>
         </Routes>
+
       </BrowserRouter>
 
     </div>

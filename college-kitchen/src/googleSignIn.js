@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { signInWithPopup } from "firebase/auth";
-import { provider } from "./firebase";
+import { provider, auth} from "./firebase";
 
 
 function SignIn() {
+ 
     const navigate = useNavigate(); // Initialize useNavigate hook
   
     const handleSignIn = () => {
