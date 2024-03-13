@@ -66,7 +66,9 @@ const Home = () => {
             onChange={(e) => setIngredients(e.target.value)}
           />
           <button onClick={handleSearch}>Search</button>
-          <button onClick={handleSpeech}>
+          
+          
+          <button className= "mic-button" onClick={handleSpeech}>
             <i className="ri-mic-line"></i>
           </button>
         </div>
