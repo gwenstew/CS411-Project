@@ -6,7 +6,7 @@ import { provider, auth} from "./firebase";
 
 
 function SignIn() {
-  
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     const handleGoogleSignIn=()=>{
@@ -14,6 +14,7 @@ function SignIn() {
         const user = result.user;
         console.log(user);
         setUser(user);
+        navigate('/home');
       }).catch((err)=>{
         console.log(err);
       })

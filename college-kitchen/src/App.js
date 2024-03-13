@@ -18,7 +18,8 @@ function App() {
       <h1> College Kitchen </h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SignIn/>}></Route>
+          <Route path="/" element={<SignIn/>}/>
+          <Route path="/home" element={<Home />} /> {/* Route for Home */}
         </Routes>
 
       </BrowserRouter>
