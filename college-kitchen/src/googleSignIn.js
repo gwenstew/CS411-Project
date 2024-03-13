@@ -6,25 +6,28 @@ import { provider, auth} from "./firebase";
 
 
 function SignIn() {
- 
-    const navigate = useNavigate(); // Initialize useNavigate hook
   
-    const handleSignIn = () => {
-      signInWithPopup(provider)
-        .then((result) => {
-          const user = result.user;
-          console.log("User signed in:", user);
-          // Redirect the user to the home route
-          navigate('/home'); // Redirect to the home route after successful sign-in
-        })
-        .catch((error) => {
-          console.error("Error signing in:", error);
-        });
-    };
+    const [user, setUser] = useState(null);
+
+    const handleGoogleSignIn=()=>{
+      signInWithPopup(auth, provider).then((result)=>{
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
   
+    const handleLogout=()=>{
+      setUser(null);
+    }
+
+    //return button
     return (
-      <button onClick={handleSignIn}>Sign in with Google</button>
+      <button onClick={handleGoogleSignIn}>Sign in with Google</button>
     );
-  }
-  
+
+
+}
   export default SignIn;
