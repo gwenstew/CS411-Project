@@ -16,6 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+          <Route path="/home" element={<Home loggedIn={loggedIn} />} />
+
         </Routes>
       </BrowserRouter>
 
