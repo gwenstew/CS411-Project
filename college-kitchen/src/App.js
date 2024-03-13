@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import React from 'react';
 import Home from './home';
 import SignIn from './googleSignIn';
+import Write from "./components/Write";
+
 
 // for some reason whenever i try to add the google sign in 
 //button i get node module dependency errors :(( 

@@ -24,3 +24,4 @@ const firebaseConfig = {
 
   const auth = getAuth(app);
   export { auth, provider};
+  export default app
