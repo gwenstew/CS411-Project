@@ -22,5 +22,5 @@ const firebaseConfig = {
     prompt: "select_account",
   });
 
-  export const auth = getAuth(app);
-  export const signInWithGooglePopup = () => signInWithGooglePopup(auth, provider);
+  const auth = getAuth(app);
+  export { auth, provider};
