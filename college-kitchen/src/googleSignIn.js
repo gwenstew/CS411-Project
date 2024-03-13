@@ -26,7 +26,16 @@ function SignIn() {
 
     //return button
     return (
-      <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+    <div className="mainContainer">
+        <div className={'titleContainer'}>
+          <div>Welcome!</div>
+        </div>
+          <div>Simplifying college cooking, one ingredient at a time. </div>
+      <div className={'buttonContainer'}>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+      </div>
+    </div>
+  
     );
 
 
