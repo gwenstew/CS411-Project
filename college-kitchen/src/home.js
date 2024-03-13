@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const Home = () => {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const handleSearch = async () => {
     try {
@@ -12,6 +13,20 @@ const Home = () => {
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
+  };
+
+  const handleRecipeClick = async (recipeId) => {
+    try {
+      const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=19d968e0a6084103addc8057885c3dfc`);
+      const data = await response.json();
+      setSelectedRecipe(data);
+    } catch (error) {
+      console.error('Error fetching recipe details:', error);
+    }
+  };
+
+  const handleGoBack = () => {
+    setSelectedRecipe(null);
   };
 
   return (
@@ -41,12 +56,24 @@ const Home = () => {
           </button>
         </div>
         <div className='recipes'>
-          <h2>Recipes</h2>
-          <ul>
-            {recipes.map(recipe => (
-              <li key={recipe.id}>{recipe.title}</li>
-            ))}
-          </ul>
+          {selectedRecipe ? (
+            <div>
+              <h2>{selectedRecipe.title}</h2>
+              <p>{selectedRecipe.instructions}</p>
+              <button onClick={handleGoBack}>Go Back</button>
+            </div>
+          ) : (
+            <div>
+              <h2>Recipes</h2>
+              <ul>
+                {recipes.map(recipe => (
+                  <li key={recipe.id} onClick={() => handleRecipeClick(recipe.id)}>
+                    {recipe.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
