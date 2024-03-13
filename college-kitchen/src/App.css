@@ -93,18 +93,19 @@
   padding: 20px;
 }
 
-.profile-favorites {
+.profile {
   display: flex;
 }
 
-.profile-button,
+.pantry-button,
 .favorites-button {
   padding: 10px;
   background-color: cornflowerblue;
   color: #fff;
   border: none;
   cursor: pointer;
-  margin-left: 10px; /* Add margin between profile and favorites buttons */
+  margin-left: 10px; /* Add margin between pantry and favorites buttons */
+  text-decoration: none;
 }
 
 .search-container {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [ingredients, setIngredients] = useState('');
@@ -33,13 +34,13 @@ const Home = () => {
     <div className="container">
       <header className="header">
         <h1>Home Page</h1>
-        <div className="profile-favorites">
-          <button className="profile-button">
-            <i className="ri-shopping-basket-line"></i>
-          </button>
-          <button className="favorites-button">
-            <i className="ri-heart-line"></i>
-          </button>
+        <div className="profile">
+          <Link to="/pantry" className="pantry-button" >
+            <i className="ri-shopping-basket-line"></i> 
+          </Link>
+          <Link to="/favorites" className="favorites-button">
+            <i className="ri-heart-line"></i> 
+          </Link>
         </div>
       </header>
       <div className="content">
