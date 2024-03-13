@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const Home = () => {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const handleSearch = async () => {
     try {
@@ -12,6 +13,20 @@ const Home = () => {
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
+  };
+
+  const handleRecipeClick = async (recipeId) => {
+    try {
+      const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=19d968e0a6084103addc8057885c3dfc`);
+      const data = await response.json();
+      setSelectedRecipe(data);
+    } catch (error) {
+      console.error('Error fetching recipe details:', error);
+    }
+  };
+
+  const handleGoBack = () => {
+    setSelectedRecipe(null);
   };
 
   return (
@@ -41,12 +56,33 @@ const Home = () => {
           </button>
         </div>
         <div className='recipes'>
-          <h2>Recipes</h2>
-          <ul>
-            {recipes.map(recipe => (
-              <li key={recipe.id}>{recipe.title}</li>
-            ))}
-          </ul>
+          {selectedRecipe ? (
+            <div>
+              <h2>{selectedRecipe.title}</h2>
+              <img src={selectedRecipe.image} alt={selectedRecipe.title} />
+              <h3>Ingredients:</h3>
+              <ul>
+                {selectedRecipe.extendedIngredients.map(ingredient => (
+                  <li key={ingredient.id}>{ingredient.original}</li>
+                ))}
+              </ul>
+              <h3>Instructions:</h3>
+              <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
+              <button onClick={handleGoBack}>Go Back</button>
+            </div>
+          ) : (
+            <div>
+              <h2>Recipes</h2>
+              <div className="grid-container">
+                {recipes.map(recipe => (
+                  <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
+                    <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                    <p>{recipe.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
