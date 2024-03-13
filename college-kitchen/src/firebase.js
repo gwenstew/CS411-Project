@@ -1,6 +1,6 @@
 import { get } from 'express/lib/request';
 import { initializeApp } from 'firebase/app';
-import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth , signInWithGooglePopup} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyArNaWNiI7dlCQZi1b9lIEQa4pDsroW6KE",
@@ -16,4 +16,11 @@ const firebaseConfig = {
   // initialize firebase
   const app = initializeApp(firebaseConfig);
   // initialize firebase authentication
-  const auth = getAuth(app);
+
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({
+    prompt: "select_account",
+  });
+
+  export const auth = getAuth(app);
+  export const signInWithGooglePopup = () => signInWithGooglePopup(auth, provider);
