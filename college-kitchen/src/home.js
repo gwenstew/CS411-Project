@@ -16,6 +16,21 @@ const Home = () => {
     }
   };
 
+  const handleSpeech = () => {
+    const recognition = new window.webkitSpeechRecognition(); // Create speech recognition object
+
+    recognition.lang = 'en-US'; 
+    recognition.interimResults = false; 
+    recognition.maxAlternatives = 1; 
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript; // get the transcribed text
+      setIngredients(transcript); // set the ingredients based on speech input
+    };
+
+    recognition.start(); // start speech recognition
+  };
+
   const handleRecipeClick = async (recipeId) => {
     try {
       const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=19d968e0a6084103addc8057885c3dfc`);
@@ -46,12 +61,12 @@ const Home = () => {
         <div className="search-container">
           <input
             type="text"
-            placeholder="Enter ingredients separated by commas..."
+            placeholder="Enter ingredients..."
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
           />
           <button onClick={handleSearch}>Search</button>
-          <button>
+          <button onClick={handleSpeech}>
             <i className="ri-mic-line"></i>
           </button>
         </div>
