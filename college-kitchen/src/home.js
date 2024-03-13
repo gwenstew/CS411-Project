@@ -32,8 +32,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <header className="header">
-        <h1>Home Page</h1>
+        
         <div className="profile">
           <Link to="/pantry" className="pantry-button" >
             <i className="ri-shopping-basket-line"></i> 
@@ -42,7 +41,7 @@ const Home = () => {
             <i className="ri-heart-line"></i> 
           </Link>
         </div>
-      </header>
+     
       <div className="content">
         <div className="search-container">
           <input
@@ -59,6 +58,9 @@ const Home = () => {
         <div className='recipes'>
           {selectedRecipe ? (
             <div>
+              
+              <button className="back-button" onClick={handleGoBack}>Recipes</button>
+
               <h2>{selectedRecipe.title}</h2>
               <img src={selectedRecipe.image} alt={selectedRecipe.title} />
               <h3>Ingredients:</h3>
@@ -69,8 +71,7 @@ const Home = () => {
               </ul>
               <h3>Instructions:</h3>
               <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
-              <button onClick={handleGoBack}>Go Back</button>
-            </div>
+              </div>
           ) : (
             <div>
               <h2>Recipes</h2>

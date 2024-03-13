@@ -126,6 +126,16 @@
   cursor: pointer;
 }
 
+.back-button {
+  background-color: cornflowerblue;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 /* RECIPE GRID STYLING */
 .grid-container {
   display: grid;
