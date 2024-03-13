@@ -59,19 +59,21 @@ const Home = () => {
           {selectedRecipe ? (
             <div>
               <h2>{selectedRecipe.title}</h2>
+              <img src={`https://spoonacular.com/recipeImages/${selectedRecipe.id}-636x393.jpg`} alt={selectedRecipe.title} />
               <p>{selectedRecipe.instructions}</p>
               <button onClick={handleGoBack}>Go Back</button>
             </div>
           ) : (
             <div>
               <h2>Recipes</h2>
-              <ul>
+              <div className="grid-container">
                 {recipes.map(recipe => (
-                  <li key={recipe.id} onClick={() => handleRecipeClick(recipe.id)}>
-                    {recipe.title}
-                  </li>
+                  <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
+                    <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                    <p>{recipe.title}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
         </div>
