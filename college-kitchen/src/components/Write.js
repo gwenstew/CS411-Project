@@ -27,7 +27,7 @@ function Write() {
       <input type='text' value={inputValue2}
       onChange={(e) => setInputValue2(e.target.value)}/>
 
-      <button onClock = {saveData} >Store ingredient</button>
+      <button onClick = {saveData} >Store ingredient</button>
 
     </div>
   )
