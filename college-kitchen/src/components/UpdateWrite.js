@@ -21,7 +21,7 @@ function UpdateWrite() {
               setInputValue1(targetObject.ingredientName);
               setInputValue2(targetObject.ingredientQuantity);
             } else {
-              alert("error");
+              alert("Error");
             }
         }
         fetchData();
@@ -35,9 +35,9 @@ function UpdateWrite() {
             ingredientName: inputValue1,
             ingredientQuantity: inputValue2
         }).then( () => {
-            alert("data updated successfully")
+            alert("Sucess! Ingredient Updated")
         }).catch((error) => {
-            alert("error: ", error.message);
+            alert("Error: ", error.message);
         })
         
     }
