@@ -163,3 +163,52 @@
 .recipe-item p {
   text-align: center;
 }
+
+/* PANTRY STYLING */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; 
+}
+
+
+.ingredient-info {
+  display: flex;
+  align-items: center;
+}
+
+.button-group {
+  margin-left: 10px; 
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 10px; 
+}
+
+.update,
+.delete,
+.add-item,
+.back-home,
+.store-button,
+.back-pantry {
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px; 
+}
+
+.delete {
+  background-color: red;
+}

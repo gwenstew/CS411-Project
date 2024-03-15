@@ -41,20 +41,30 @@ function Pantry() {
   }, []);
 
   return (
-    <div>
-        <ul>
-            {ingredientArray.map((item, index) => (
-                <li key={index}>
-                    {item.ingredientName}: {item.ingredientQuantity}
-                    <button className='button1' onClick={ () => navigate(`/updatewrite/${item.ingredientId}`)}> Update Ingredient</button>
-                    <button className='button1' onClick={ () => deleteIngredient(item.ingredientId)}> Delete Ingredient </button>
-                </li>
-            ))}
-        </ul>
-        <button className='button1' onClick={ () => navigate("/write")}> Add Item To Pantry </button> 
-        <br />
-        <br />
-        <button className='button1' onClick={ () => navigate("/home")}> Back To Homepage </button> 
+    <div className="container">
+      <ul>
+        {ingredientArray.map((item, index) => (
+          <li key={index} className="ingredient-item">
+            <div className="ingredient-info">
+              <span>
+                {item.ingredientName}: {item.ingredientQuantity}
+              </span>
+              <div className="button-group">
+                <button className='update' onClick={() => navigate(`/updatewrite/${item.ingredientId}`)}>
+                  <i className="ri-edit-box-line"></i>
+                </button>
+                <button className='delete' onClick={() => deleteIngredient(item.ingredientId)}>
+                  <i className="ri-delete-bin-line"></i>
+                </button>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <button className='add-item' onClick={() => navigate("/write")}> Add Item To Pantry </button> 
+      <br />
+      <br />
+      <button className='back-home' onClick={() => navigate("/home")}> Back To Homepage </button> 
     </div>
   )
 }

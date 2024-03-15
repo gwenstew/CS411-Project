@@ -29,10 +29,10 @@ function Write() {
       <input type='text' value={inputValue2}
       onChange={(e) => setInputValue2(e.target.value)}/>
 
-      <button onClick = {saveData} >Store ingredient</button>
+      <button className= 'store-button' onClick = {saveData} >Store ingredient</button>
       <br />
       <br />
-      <button className='button1' onClick={ () => navigate("/pantry")}> Back To Pantry </button>
+      <button className='back-pantry' onClick={ () => navigate("/pantry")}> Back To Pantry </button>
 
     </div>
   )
