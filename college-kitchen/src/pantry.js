@@ -46,8 +46,8 @@ function Pantry() {
             {ingredientArray.map((item, index) => (
                 <li key={index}>
                     {item.ingredientName}: {item.ingredientQuantity}
-                    <button className='button1' onClick={ () => navigate(`/updatewrite/${item.ingredientId}`)}>UPDATE</button>
-                    <button className='button1' onClick={ () => deleteIngredient(item.ingredientId)}>DELETE</button>
+                    <button className='button1' onClick={ () => navigate(`/updatewrite/${item.ingredientId}`)}> Update Ingredient</button>
+                    <button className='button1' onClick={ () => deleteIngredient(item.ingredientId)}> Delete Ingredient </button>
                 </li>
             ))}
         </ul>
