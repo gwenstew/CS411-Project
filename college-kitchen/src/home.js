@@ -50,7 +50,7 @@ const Home = () => {
         
         <div className="profile">
           <Link to="/pantry" className="pantry-button" >
-            <i className="ri-shopping-basket-line"></i> 
+            <i className="ri-shopping-basket-line"></i>
           </Link>
           <Link to="/favorites" className="favorites-button">
             <i className="ri-heart-line"></i> 
