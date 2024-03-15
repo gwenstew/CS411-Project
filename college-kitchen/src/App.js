@@ -5,7 +5,8 @@ import React from 'react';
 import Home from './home';
 import SignIn from './googleSignIn';
 import Write from "./components/Write";
-
+import Read from "./components/Read";
+import Update from "./components/Update";
 
 // for some reason whenever i try to add the google sign in 
 //button i get node module dependency errors :(( 
@@ -21,6 +22,9 @@ function App() {
         <Routes>
           <Route path="/" element={<SignIn/>}/>
           <Route path="/home" element={<Home />} /> {/* Route for Home */}
+          <Route path="/write" element={<Write/>}/>
+          <Route path="/read" element={<Read/>}/>
+          <Route path="/update" element={<Update/>}/>
         </Routes>
 
       </BrowserRouter>
