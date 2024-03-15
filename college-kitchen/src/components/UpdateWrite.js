@@ -54,7 +54,7 @@ function UpdateWrite() {
         <input type='text' value={inputValue2} 
         onChange={(e) => setInputValue2(e.target.value)}/> <br/>
 
-        <button onClick={overwriteData}> Add Item To Pantry </button>
+        <button onClick={overwriteData}> Update Ingredient </button>
         <br />
         <br />
         <button className='button1' onClick={ () => navigate("/pantry")}> Back To Pantry </button>
