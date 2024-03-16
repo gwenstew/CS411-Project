@@ -1,5 +1,12 @@
+.reenie-beanie-regular {
+  font-family: "Reenie Beanie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
+  font-family: "Reenie Beanie", cursive;
 }
 
 .App-header {
@@ -19,6 +26,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  font-family: "Reenie Beanie", cursive;
 }
 
 .titleContainer {
@@ -28,6 +36,8 @@
   font-weight: bolder;
   align-items: center;
   justify-content: center;
+  font-family: "Reenie Beanie", cursive;
+
 }
 
 .resultContainer,
