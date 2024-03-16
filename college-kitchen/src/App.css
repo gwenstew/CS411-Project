@@ -10,7 +10,6 @@
   font-style: normal;
 }
 
-
 .App {
   text-align: center;
   font-family: "Barlow", sans-serif;
@@ -107,7 +106,7 @@
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: "Barlow", sans-serif;
 }
 
@@ -140,7 +139,7 @@
   cursor: pointer;
   margin-left: 10px; /* Add margin between pantry and favorites buttons */
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .search-container {
@@ -160,7 +159,7 @@
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 10px;  
+  border-radius: 5px;  
 }
 
 .mic-button {
@@ -175,7 +174,7 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 /* RECIPE GRID STYLING */
@@ -219,6 +218,7 @@
 
 .button-group {
   margin-left: 10px; 
+
 }
 
 ul {
@@ -241,6 +241,9 @@ li {
   border: none;
   cursor: pointer;
   margin-right: 10px; 
+  font-family: "Barlow", sans-serif;
+  border-radius: 5px;
+
 }
 
 .delete {
