@@ -8,10 +8,11 @@ const Home = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=10&apiKey=19d968e0a6084103addc8057885c3dfc`);
+      const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=10&sort=max-used-ingredients&apiKey=19d968e0a6084103addc8057885c3dfc`);
       const data = await response.json();
       setRecipes(data);
-    } catch (error) {
+      setSelectedRecipe(null); 
+  } catch (error) {
       console.error('Error fetching recipes:', error);
     }
   };
@@ -89,6 +90,8 @@ const Home = () => {
               <h3>Instructions:</h3>
               <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
               </div>
+
+          
           ) : (
             <div>
               <h2>Recipes</h2>
