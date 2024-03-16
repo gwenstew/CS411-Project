@@ -1,12 +1,24 @@
-.reenie-beanie-regular {
-  font-family: "Reenie Beanie", cursive;
+.barlow-thin {
+  font-family: "Barlow", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.rock-3d-regular {
+  font-family: "Rock 3D", system-ui;
   font-weight: 400;
   font-style: normal;
 }
 
+
 .App {
   text-align: center;
-  font-family: "Reenie Beanie", cursive;
+  font-family: "Barlow", sans-serif;
+}
+
+.brand {
+  font-family: "Rock 3D", system-ui;
+  font-size: 70px;
 }
 
 .App-header {
@@ -26,7 +38,8 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-family: "Reenie Beanie", cursive;
+  font-family: "Barlow", sans-serif;
+  font-size: 30px;
 }
 
 .titleContainer {
@@ -36,7 +49,8 @@
   font-weight: bolder;
   align-items: center;
   justify-content: center;
-  font-family: "Reenie Beanie", cursive;
+  font-family: "Barlow", sans-serif;
+  font-size: 60px;
 
 }
 
@@ -93,6 +107,8 @@
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 10px;
+  font-family: "Barlow", sans-serif;
 }
 
 /* HOME PAGE STYLING */
@@ -124,6 +140,7 @@
   cursor: pointer;
   margin-left: 10px; /* Add margin between pantry and favorites buttons */
   text-decoration: none;
+  border-radius: 10px;
 }
 
 .search-container {
@@ -134,6 +151,7 @@
   width: 300px;
   padding: 5px;
   margin-right: 10px;
+  font-family: "Barlow", sans-serif;
 }
 
 .search-container button {
@@ -142,6 +160,11 @@
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 10px;  
+}
+
+.mic-button {
+  margin-left: 10px;
 }
 
 .back-button {
@@ -152,6 +175,7 @@
   position: absolute;
   top: 10px;
   left: 10px;
+  border-radius: 10px;
 }
 
 /* RECIPE GRID STYLING */

@@ -19,7 +19,7 @@ function App() {
  
   return (
     <div className="App">
-      <h1> College Kitchen </h1>
+      <h1 className='brand'> College Kitchen </h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignIn/>}/>
