@@ -36,4 +36,8 @@ function FavoriteRecipes() {
         window.location.reload(); // unsure if this is the best way to refresh, we may need to change it later
     }
 
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 }
