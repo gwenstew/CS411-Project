@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInWithPopup, signOut} from "firebase/auth";
 import { provider, auth} from "./firebase";
+import SignOut from "./SignOut";
 
 function SignIn() {
     const navigate = useNavigate();
@@ -20,8 +21,19 @@ function SignIn() {
         console.log(err);
       })
     }
-  
-    const handleLogout = () => {
+
+    useEffect(() => {
+      // checks if user is signed in
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+          if (user) {
+              setUser(user);
+              navigate('/home');
+          }
+      });
+      return () => unsubscribe();
+    }, [navigate]);
+
+    const handleSignOut = () => {
       signOut(auth)
           .then(() => {
               setUser(null);
@@ -37,7 +49,7 @@ function SignIn() {
       <div className="mainContainer">
       <div className="topRight">
           {user && (
-              <button className="logout-button" onClick={handleLogout}>Logout</button>
+              <button className="logout-button" onClick={handleSignOut}>Logout</button>
           )}
       </div>
       <div className={'titleContainer'}>
