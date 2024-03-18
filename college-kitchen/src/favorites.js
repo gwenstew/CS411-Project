@@ -40,4 +40,40 @@ function FavoriteRecipes() {
         fetchData();
     }, []);
 
+
+    return (
+        <div className="container">
+            <h2>Favorite Recipes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Ingredients</th>
+                        <th>Instructions</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {recipeArray.map((recipe, index) => (
+                        <tr key={index}>
+                            <td>{recipe.recipeName}</td>
+                            <td>{recipe.ingredients}</td>
+                            <td>{recipe.instructions}</td>
+                            <td>
+                                <button className='delete' onClick={() => deleteRecipe(recipe.recipeId)}>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <button className='add-recipe' onClick={() => navigate("/add-recipe")}>Add Recipe</button>
+            <br />
+            <br />
+            <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
+        </div>
+    );
 }
+
+export default FavoriteRecipes;
