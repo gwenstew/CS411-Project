@@ -9,6 +9,9 @@ import Read from "./components/Read";
 import Update from "./components/Update";
 import UpdateWrite from "./components/UpdateWrite";
 import Pantry from "./pantry";
+import FavoriteRecipes from "./favorites";
+import SignOut from './SignOut';
+
 
 // for some reason whenever i try to add the google sign in 
 //button i get node module dependency errors :(( 
@@ -29,6 +32,9 @@ function App() {
           <Route path="/update" element={<Update/>}/>
           <Route path="/updatewrite/:firebaseId" element={ <UpdateWrite /> } />
           <Route path="/pantry" element={<Pantry/>}/>
+          <Route path="/favorites" element={<FavoriteRecipes/>}/>
+          <Route path="/" element={<SignOut/>}/>
+
         </Routes>
 
       </BrowserRouter>
