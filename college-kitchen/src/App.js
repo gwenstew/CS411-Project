@@ -11,6 +11,7 @@ import UpdateWrite from "./components/UpdateWrite";
 import Pantry from "./pantry";
 import FavoriteRecipes from "./favorites";
 // import SignOut from './SignOut';
+import Profile from './profile';
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
           <Route path="/pantry" element={<Pantry/>}/>
           <Route path="/favorites" element={<FavoriteRecipes/>}/>
           {/* <Route path="/" element={<SignOut/>}/> */}
+          <Route path="/profile" element={<Profile/>}/>
+
+          
 
         </Routes>
 

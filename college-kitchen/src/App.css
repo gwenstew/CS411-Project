@@ -132,7 +132,8 @@
   right: 20px;
 }
 
-.profile-button {
+.profile-button,
+.logout-button {
   padding: 10px;
   background-color: tomato;
   color: #fff;
@@ -141,6 +142,8 @@
   text-decoration: none;
   border-radius: 5px;
 }
+
+
 
 .pantry-button,
 .favorites-button {
