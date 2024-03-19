@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import SignOut from './SignOut'; 
 
 const Home = () => {
   const [ingredients, setIngredients] = useState('');
@@ -49,6 +48,11 @@ const Home = () => {
   return (
     <div className="container">
       <div className="profile">
+      <Link to="/profile" className="profile-button">
+          <i className="ri-user-line"></i>
+        </Link>
+      </div>
+      <div className="content">
         <Link to="/pantry" className="pantry-button">
           <i className="ri-shopping-basket-line"></i>
         </Link>

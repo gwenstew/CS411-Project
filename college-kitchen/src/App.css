@@ -127,7 +127,19 @@
 }
 
 .profile {
-  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.profile-button {
+  padding: 10px;
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .pantry-button,

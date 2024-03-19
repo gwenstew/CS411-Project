@@ -2,9 +2,9 @@ import './App.css'
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { signInWithPopup, signOut} from "firebase/auth";
+import { signInWithPopup } from "firebase/auth"; // signOut
 import { provider, auth} from "./firebase";
-import SignOut from "./SignOut";
+// import SignOut from "./SignOut";
 
 function SignIn() {
     const navigate = useNavigate();
@@ -33,25 +33,25 @@ function SignIn() {
       return () => unsubscribe();
     }, [navigate]);
 
-    const handleSignOut = () => {
-      signOut(auth)
-          .then(() => {
-              setUser(null);
-              navigate('/');
-          })
-          .catch((error) => {
-              console.log(error);
-          });
-  };
+  //   const handleSignOut = () => {
+  //     signOut(auth)
+  //         .then(() => {
+  //             setUser(null);
+  //             navigate('/');
+  //         })
+  //         .catch((error) => {
+  //             console.log(error);
+  //         });
+  // };
 
     //return button
     return (
       <div className="mainContainer">
-      <div className="topRight">
+      {/* <div className="topRight">
           {user && (
               <button className="logout-button" onClick={handleSignOut}>Logout</button>
           )}
-      </div>
+      </div> */}
       <div className={'titleContainer'}>
           <div>Welcome!</div>
       </div>
