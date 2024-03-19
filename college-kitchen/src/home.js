@@ -55,7 +55,6 @@ const Home = () => {
         <Link to="/favorites" className="favorites-button">
           <i className="ri-heart-line"></i> 
         </Link>
-        <SignOut /> 
       </div>
       <div className="content">
         <div className="search-container">
