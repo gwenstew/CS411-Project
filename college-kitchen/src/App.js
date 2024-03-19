@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { useEffect, useState } from 'react'
+import {useEffect, useState } from 'react'
 import React from 'react';
 import Home from './home';
 import SignIn from './googleSignIn';

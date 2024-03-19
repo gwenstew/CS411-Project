@@ -1,7 +1,7 @@
 import './App.css'
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signInWithPopup, signOut} from "firebase/auth";
 import { provider, auth} from "./firebase";
 import SignOut from "./SignOut";
