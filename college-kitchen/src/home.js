@@ -5,6 +5,8 @@ const Home = () => {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const [favorites, setFavorites] = useState([]);
+
 
   const handleSearch = async () => {
     try {
@@ -43,6 +45,18 @@ const Home = () => {
 
   const handleGoBack = () => {
     setSelectedRecipe(null);
+  };
+
+  const toggleFavorite = (recipeId, e) => {
+
+    const index = favorites.findIndex(recipe => recipe.id === recipeId);
+    if (index === -1) {
+      const recipeToAdd = recipes.find(recipe => recipe.id === recipeId);
+      setFavorites([...favorites, recipeToAdd]);
+    } else {
+      const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
+      setFavorites(newFavorites);
+    }
   };
 
   return (
@@ -96,6 +110,10 @@ const Home = () => {
                   <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
+                    <button className='favorites-button' onClick={() => toggleFavorite(recipe.id)}>
+                      {favorites.some(favorite => favorite.id === recipe.id) ? < i class="ri-dislike-line"></i> : <i className="ri-heart-line"></i> 
+}
+                    </button>
                   </div>
                 ))}
               </div>

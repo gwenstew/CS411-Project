@@ -1,5 +1,3 @@
-// saves table for user's favorite recipies
-
 import React, { useState, useEffect } from 'react';
 import app from "./firebase";
 import { getDatabase, ref, get, remove } from "firebase/database";
@@ -77,3 +75,4 @@ function FavoriteRecipes() {
 }
 
 export default FavoriteRecipes;
+
