@@ -5,7 +5,6 @@ import { auth } from "./firebase";
 function SignOut({ onSignOut }) {
     const handleSignOut = () => {
         signOut(auth).then(() => {
-            // Call the parent component's signOut function
             onSignOut();
         }).catch((err) => {
             console.log(err);

@@ -2,9 +2,8 @@ import './App.css'
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { signInWithPopup } from "firebase/auth"; // signOut
+import { signInWithPopup } from "firebase/auth"; 
 import { provider, auth} from "./firebase";
-// import SignOut from "./SignOut";
 
 function SignIn() {
     const navigate = useNavigate();
@@ -12,12 +11,14 @@ function SignIn() {
 
 
     const handleGoogleSignIn=()=>{
-      signInWithPopup(auth, provider).then((result)=>{
-        const user = result.user;
-        console.log(user);
-        setUser(user);
-        navigate('/home');
-      }).catch((err)=>{
+      signInWithPopup(auth, provider)
+      .then((result)=>{
+          const user = result.user;
+          console.log(user);
+          setUser(user);
+          navigate('/home');
+      
+        }).catch((err)=>{
         console.log(err);
       })
     }
@@ -33,25 +34,8 @@ function SignIn() {
       return () => unsubscribe();
     }, [navigate]);
 
-  //   const handleSignOut = () => {
-  //     signOut(auth)
-  //         .then(() => {
-  //             setUser(null);
-  //             navigate('/');
-  //         })
-  //         .catch((error) => {
-  //             console.log(error);
-  //         });
-  // };
-
-    //return button
     return (
       <div className="mainContainer">
-      {/* <div className="topRight">
-          {user && (
-              <button className="logout-button" onClick={handleSignOut}>Logout</button>
-          )}
-      </div> */}
       <div className={'titleContainer'}>
           <div>Welcome!</div>
       </div>
