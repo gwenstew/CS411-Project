@@ -46,14 +46,14 @@ function UpdateWrite() {
     return (
         <div>
 
-        <h1>UPDATE</h1>
-
-        <input type='text' value={inputValue1} 
+        <h1>Update Ingredient</h1>
+        <div className="input-container">
+        <input type='text' className="updatebox1" value={inputValue1} 
         onChange={(e) => setInputValue1(e.target.value)}/> 
 
-        <input type='text' value={inputValue2} 
+        <input type='text' className="updatebox2" value={inputValue2} 
         onChange={(e) => setInputValue2(e.target.value)}/> <br/>
-
+        </div>
         <button className='update' onClick={overwriteData}> Update Ingredient </button>
         <br />
         <br />
