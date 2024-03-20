@@ -5,27 +5,24 @@ import { useNavigate } from 'react-router-dom';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
+    const [favorites, setFavorites] = useState([]);
     const [recipeArray, setRecipeArray] = useState([]);
 
-    // fetch data from Firebase
-    const fetchData = async () => {
-        const db = getDatabase(app);
-        const dbRef = ref(db, "recipes/favorites");
-        const snapshot = await get(dbRef);
-        if (snapshot.exists()) {
-            const myData = snapshot.val();
-            const tempArray = Object.keys(myData).map(myFireId => {
-                return {
-                    ...myData[myFireId],
-                    recipeId: myFireId
-                }
-            });
-            setRecipeArray(tempArray);
-        } else {
+    useEffect(() => {
+        const fetchData = async () => {
+          const db = getDatabase(app);
+          const dbRef = ref(db, "recipes/favorites");
+          const snapshot = await get(dbRef);
+          if (snapshot.exists()) {
+            const favoriteRecipes = Object.values(snapshot.val());
+            setFavorites(favoriteRecipes);
+          } else {
             alert("Error, couldn't retrieve favorite recipes");
-        }
+          }
+        };
+        fetchData();
+      }, []);
 
-    }
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
         const db = getDatabase(app);
@@ -33,11 +30,6 @@ function FavoriteRecipes() {
         await remove(dbRef);
         window.location.reload();
     }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
 
     return (
         <div className="container">
@@ -72,6 +64,7 @@ function FavoriteRecipes() {
             <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
+
 }
 
 export default FavoriteRecipes;
