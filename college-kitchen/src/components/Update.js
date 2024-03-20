@@ -2,16 +2,20 @@ import React, {useState} from 'react';
 import app from "../firebase";
 import {getDatabase, ref, get, remove} from "firebase/database";
 import { useNavigate } from 'react-router-dom';
-
+import { getAuth } from "firebase/auth";
 
 function Update() {
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const userID = user.uid;
 
   const navigate = useNavigate();
   let [ingredientArray, setIngredientArray] = useState([]);
 
   const fetchData = async () => {
     const db = getDatabase(app);
-    const dbRef = ref(db, "pantry/ingredients");
+    const dbRef = ref(db, `users/${userID}/pantry/ingredients`);
     const snapshot = await get(dbRef);
     if (snapshot.exists()) {
 
@@ -31,7 +35,7 @@ function Update() {
 
   const deleteIngredient = async (ingredientIdParam) => {
     const db = getDatabase(app);
-    const dbRef = ref(db, "pantry/ingredients/"+ingredientIdParam);
+    const dbRef = ref(db, `users/${userID}/pantry/ingredients/`+ingredientIdParam);
     await remove(dbRef);
     window.location.reload();
   }

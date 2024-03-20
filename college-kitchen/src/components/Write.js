@@ -2,8 +2,12 @@ import React, {useState} from 'react';
 import app from "../firebase";
 import {getDatabase, ref, set, push} from "firebase/database";
 import { useNavigate } from 'react-router-dom';
+import { getAuth } from "firebase/auth";
 
 function Write() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const userID = user.uid;
 
   const navigate = useNavigate();
   let [inputValue1, setInputValue1] = useState("");
@@ -11,7 +15,7 @@ function Write() {
 
   const saveData = async() => {
     const db = getDatabase(app);
-    const newDocRef = push(ref(db, "pantry/ingredients"))
+    const newDocRef = push(ref(db,`users/${userID}/pantry/ingredients`))
     set (newDocRef,{
       ingredientName: inputValue1,
       ingredientQuantity: inputValue2

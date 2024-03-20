@@ -3,14 +3,21 @@ import { Link } from 'react-router-dom';
 import { getDatabase, ref, get } from "firebase/database";
 // import { useNavigate } from 'react-router-dom';
 import app from "./firebase";
+import { getAuth } from "firebase/auth";
+
 
 function Home() {
   // const navigate = useNavigate();
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const userID = user.uid;
+
   const [ingredientArray, setIngredientArray] = useState([]);
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
+
 
   useEffect(() => {
     fetchData();
@@ -18,7 +25,7 @@ function Home() {
 
   const fetchData = async () => {
     const db = getDatabase(app);
-    const dbRef = ref(db, "pantry/ingredients");
+    const dbRef = ref(db, `users/${userID}/pantry/ingredients`);
     const snapshot = await get(dbRef);
     if (snapshot.exists()) {
       const myData = snapshot.val();

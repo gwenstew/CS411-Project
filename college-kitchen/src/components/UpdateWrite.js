@@ -2,8 +2,14 @@ import React, {useState, useEffect} from 'react';
 import app from "../firebase";
 import { getDatabase, ref, set, get } from "firebase/database";
 import { useNavigate, useParams } from 'react-router-dom';
+import { getAuth } from "firebase/auth";
+
 
 function UpdateWrite() {
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const userID = user.uid;
 
   const navigate = useNavigate();
   const {firebaseId} = useParams();
@@ -14,7 +20,7 @@ function UpdateWrite() {
     useEffect(() => {
         const fetchData = async () => {
             const db = getDatabase(app);
-            const dbRef = ref(db, "pantry/ingredients/"+firebaseId);
+            const dbRef = ref(db, `users/${userID}/pantry/ingredients/`+firebaseId);
             const snapshot = await get(dbRef);
             if(snapshot.exists()) {
               const targetObject = snapshot.val();
@@ -30,7 +36,7 @@ function UpdateWrite() {
 
     const overwriteData = async () => {
         const db = getDatabase(app);
-        const newDocRef = ref(db, "pantry/ingredients/"+firebaseId);
+        const newDocRef = ref(db, `users/${userID}/pantry/ingredients/`+firebaseId);
         set(newDocRef, {
             ingredientName: inputValue1,
             ingredientQuantity: inputValue2
