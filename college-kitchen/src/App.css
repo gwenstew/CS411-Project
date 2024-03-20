@@ -143,7 +143,11 @@
   border-radius: 5px;
 }
 
+.instructions {
+  max-width: 600px; 
+  margin: 0 auto; 
 
+}
 
 .pantry-button,
 .favorites-button {
