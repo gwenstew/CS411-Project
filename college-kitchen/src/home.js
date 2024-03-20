@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { getDatabase, ref, get } from "firebase/database";
+// import { useNavigate } from 'react-router-dom';
+import app from "./firebase";
 
-const Home = () => {
+function Home() {
+  // const navigate = useNavigate();
+  const [ingredientArray, setIngredientArray] = useState([]);
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const db = getDatabase(app);
+    const dbRef = ref(db, "pantry/ingredients");
+    const snapshot = await get(dbRef);
+    if (snapshot.exists()) {
+      const myData = snapshot.val();
+      const tempArray = Object.keys(myData).map(myFireId => {
+        return {
+          ...myData[myFireId],
+          ingredientId: myFireId
+        }
+      });
+      setIngredientArray(tempArray);
+    } else {
+      alert("Error, couldn't retrieve pantry")
+    }
+  }
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=10&sort=max-used-ingredients&apiKey=19d968e0a6084103addc8057885c3dfc`);
+      const allIngredients = [...ingredientArray.map(ingredient => ingredient.ingredientName), ...ingredients.split(',')];
+      const ingredientsString = allIngredients.join(',');
+      const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredientsString)}&number=10&sort=max-used-ingredients&apiKey=19d968e0a6084103addc8057885c3dfc`);
       const data = await response.json();
       setRecipes(data);
       setSelectedRecipe(null); 
@@ -100,7 +128,7 @@ const Home = () => {
                 ))}
               </ul>
               <h3>Instructions:</h3>
-              <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
+              <div className='instructions' dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
             </div>
           ) : (
             <div>
