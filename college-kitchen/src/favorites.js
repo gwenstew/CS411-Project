@@ -26,12 +26,12 @@ function FavoriteRecipes() {
         }
 
     }
-    // deletes a recipie
+    // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
         const db = getDatabase(app);
         const dbRef = ref(db, "recipes/favorites/" + recipeIdParam);
         await remove(dbRef);
-        window.location.reload(); // unsure if this is the best way to refresh, we may need to change it later
+        window.location.reload();
     }
 
     useEffect(() => {

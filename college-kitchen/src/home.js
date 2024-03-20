@@ -5,7 +5,7 @@ const Home = () => {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-    const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
 
   const handleSearch = async () => {
@@ -110,9 +110,13 @@ const Home = () => {
                   <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
-                    <button className='favorites-button' onClick={() => toggleFavorite(recipe.id)}>
-                      {favorites.some(favorite => favorite.id === recipe.id) ? < i class="ri-dislike-line"></i> : <i className="ri-heart-line"></i> 
-}
+                    
+                    <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
+                          {favorites.some(favorite => favorite.id === recipe.id) ? 
+                              <i class="ri-dislike-line"></i> 
+                              :
+                              <i className="ri-heart-line"></i> 
+                          }
                     </button>
                   </div>
                 ))}
