@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
+    const [favorites, setFavorites] = useState([]);
     const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
@@ -22,7 +23,6 @@ function FavoriteRecipes() {
         fetchData();
       }, []);
 
-    }
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
         const db = getDatabase(app);
@@ -64,6 +64,8 @@ function FavoriteRecipes() {
             <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
+
+}
 
 export default FavoriteRecipes;
 
