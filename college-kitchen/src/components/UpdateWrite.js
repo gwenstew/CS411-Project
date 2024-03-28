@@ -9,7 +9,7 @@ function UpdateWrite() {
 
   const auth = getAuth();
   const user = auth.currentUser;
-  const userID = user.uid;
+  const userID = user?.uid;
 
   const navigate = useNavigate();
   const {firebaseId} = useParams();

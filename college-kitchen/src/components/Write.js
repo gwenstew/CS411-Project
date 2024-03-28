@@ -7,7 +7,7 @@ import { getAuth } from "firebase/auth";
 function Write() {
   const auth = getAuth();
   const user = auth.currentUser;
-  const userID = user.uid;
+  const userID = user?.uid;
 
   const navigate = useNavigate();
   let [inputValue1, setInputValue1] = useState("");

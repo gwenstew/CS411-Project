@@ -10,7 +10,7 @@ function Home() {
   // const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
-  const userID = user.uid;
+  const userID = user?.uid;
 
   const [ingredientArray, setIngredientArray] = useState([]);
   const [ingredients, setIngredients] = useState('');
