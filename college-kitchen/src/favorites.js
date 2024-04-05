@@ -9,6 +9,9 @@ function FavoriteRecipes() {
     // const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
+        fetchData();
+    }, []);
+    
         const fetchData = async () => {
           const db = getDatabase(app);
           const dbRef = ref(db, "recipes/favorites");
@@ -16,12 +19,12 @@ function FavoriteRecipes() {
           if (snapshot.exists()) {
             const favoriteRecipes = Object.values(snapshot.val());
             setFavorites(favoriteRecipes);
-          } else {
-            alert("Error, couldn't retrieve favorite recipes");
+          //} else {
+            //alert("Error, couldn't retrieve favorite recipes");
+          //}
           }
         };
-        fetchData();
-      }, []);
+
 
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
@@ -37,17 +40,20 @@ function FavoriteRecipes() {
             <h2>Favorite Recipes</h2>
             <div className="favorites-list">
                     {favorites.map((recipe, index) => (
-                        <tr key={index}>
-                            <td>{recipe.recipeName}</td>
-                            <td>{recipe.ingredients}</td>
-                            <td>{recipe.instructions}</td>
-                            <td>
-                                <button className='add-recipe' onClick={() => navigate("/add-recipe")}>Add Recipe</button>
-                                <br />
-                                <button className='delete' onClick={() => deleteRecipe(recipe.recipeIdParam)}>Delete</button>
-                            </td>
-                        </tr>
+                        <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
+                        <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                        <p>{recipe.title}</p>
+                        
+                        <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
+                              {favorites.some(favorite => favorite.id === recipe.id) ? 
+                                  <i class="ri-dislike-line"></i> 
+                                  :
+                                  <i className="ri-heart-line"></i> 
+                              }
+                        </button>
+                      </div>
                     ))}
+            </div>
             <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
@@ -55,4 +61,3 @@ function FavoriteRecipes() {
 }
 
 export default FavoriteRecipes;
-
