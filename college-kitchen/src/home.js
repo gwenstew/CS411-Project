@@ -18,7 +18,7 @@ function Home() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-
+/* This chunk is unneccessary.
   useEffect(() => {
     fetchData();
   }, []);
@@ -39,7 +39,7 @@ function Home() {
     } else {
       alert("Error, couldn't retrieve pantry")
     }
-  }
+  }*/
 
   const handleSearch = async () => {
     try {
