@@ -26,6 +26,12 @@ const Profile = () => {
         <p>Email: {currentUser.email}</p>
         {/* Add more user details here */}
         <button className='logout-button' onClick={handleSignOut}>Logout</button>
+        <div className='home-button'>
+          <br />
+          <br />
+          <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i></button>
+        </div>
+        
       </div>
     </div>
   );
