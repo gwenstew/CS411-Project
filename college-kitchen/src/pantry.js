@@ -32,7 +32,7 @@ function Pantry() {
 
         setIngredientArray(tempArray);
     } else {
-        alert("Error, couldn't retrieve pantry")
+        alert("Your pantry is empty! Please add an ingredient using the button below.")
     }
   }
 
@@ -40,7 +40,8 @@ function Pantry() {
     const db = getDatabase(app);
     const dbRef = ref(db, `users/${userID}/pantry/ingredients/`+ingredientIdParam);
     await remove(dbRef);
-    window.location.reload();
+    fetchData();
+    //window.location.reload();
   }
 
   useEffect(() => {

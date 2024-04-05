@@ -17,6 +17,11 @@ function App() {
   return (
     <div className="App">
       <h1 className='brand'> College Kitchen </h1>
+
+      <header>
+        <img src="./college-kitchen/LOGO1.png" alt="CK" />
+      </header>
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignIn/>}/>
