@@ -33,11 +33,13 @@ function Update() {
     }
   }
 
+
   const deleteIngredient = async (ingredientIdParam) => {
     const db = getDatabase(app);
     const dbRef = ref(db, `users/${userID}/pantry/ingredients/`+ingredientIdParam);
     await remove(dbRef);
-    window.location.reload();
+    fetchData();
+    //window.location.reload();
   }
   return (
     <div>
@@ -47,7 +49,7 @@ function Update() {
                 <li key={index}>
                     {item.ingredientName}: {item.ingredientQuantity}
                     <button className='button1' onClick={ () => navigate(`/updatewrite/${item.ingredientId}`)}>UPDATE</button>
-                    <button className='button1' onClick={ () => deleteIngredient(item.ingredientId)}>DELETE</button>
+                    <button className='button1' onClick={ () => {deleteIngredient(item.ingredientId)}}>DELETE</button>
                 </li>
             ))}
         </ul>
