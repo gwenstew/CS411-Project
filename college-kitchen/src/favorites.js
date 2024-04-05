@@ -14,7 +14,7 @@ function FavoriteRecipes() {
     
     const fetchData = async () => {
         const db = getDatabase(app);
-        const dbRef = ref(db, "recipes/favorites");
+        const dbRef = ref(db, `users/${userID}/recipes/favorites`);
         const snapshot = await get(dbRef);
         if (snapshot.exists()) {
             const favoriteRecipes = Object.values(snapshot.val()).map(myFireId => {
