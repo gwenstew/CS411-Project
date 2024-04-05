@@ -10,17 +10,18 @@ import UpdateWrite from "./components/UpdateWrite";
 import Pantry from "./pantry";
 import FavoriteRecipes from "./favorites";
 import Profile from './profile';
+import logo from './LOGO1.png';
 
+console.log(logo);
 
 function App() {
 
   return (
     <div className="App">
-      <h1 className='brand'> College Kitchen </h1>
 
-      {/* <header>
-        <img src="./college-kitchen/LOGO1.png" alt="CK" />
-      </header> */}
+  <header>
+      <img src={logo} alt="CK"/>
+  </header>
 
       <BrowserRouter>
         <Routes>

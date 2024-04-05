@@ -102,7 +102,7 @@ function Home() {
           <i className="ri-user-line"></i>
         </Link>
       </div>
-      <div className="content">
+      <div className="features-container">
         <Link to="/pantry" className="pantry-button">
           <i className="ri-shopping-basket-line"></i>
         </Link>

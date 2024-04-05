@@ -54,7 +54,6 @@
   border-radius: 10px;
   padding: 10px;
   overflow: hidden;
-  background-color: bisque;
 }
 
 .resultContainer,
@@ -130,6 +129,32 @@
   padding: 20px;
 }
 
+header {
+  background-color: bisque;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style for the logo image */
+header img {
+  max-width: 100px; /* Adjust as needed */
+  vertical-align: middle;
+}
+
+.back-home {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  background-color: tomato;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
 .profile {
   position: absolute;
   top: 20px;
@@ -163,10 +188,19 @@
   margin-left: 10px;
   text-decoration: none;
   border-radius: 5px;
+  margin-top: 20px;
+}
+
+.features-container {
+  margin-top: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
 }
 
 .search-container {
-  margin-top: 20px;
+  margin-top: 30px;
   cursor: pointer;
   border-radius: 10px;
   padding: 10px;
@@ -235,6 +269,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 }
 
 .ingredient-item {
@@ -246,7 +281,6 @@
   overflow: hidden;
   background-color: bisque;
 }
-
 
 .ingredient-info {
   display: flex;

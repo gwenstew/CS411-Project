@@ -51,6 +51,8 @@ function FavoriteRecipes() {
         <div className="container">
             <h2>Favorite Recipes</h2>
             <div className="favorites-list">
+            <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
+      </button> 
                     {favorites.map((recipe) => (
                         <div key={recipe.id} className="favorite-item"> onClick={() => fetchData(recipe.id)}
                         <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
@@ -62,7 +64,6 @@ function FavoriteRecipes() {
                       </div>
                     ))}
             </div>
-            <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
 

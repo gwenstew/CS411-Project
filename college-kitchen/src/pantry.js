@@ -50,6 +50,9 @@ function Pantry() {
 
   return (
     <div className="container">
+      <h2> PANTRY </h2>
+      <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
+ </button> 
       <ul>
         {ingredientArray.map((item, index) => (
           <li key={index} className="ingredient-item">
@@ -71,10 +74,7 @@ function Pantry() {
       </ul>
       <button className='add-item' onClick={() => navigate("/write")}>< i class="ri-add-box-line"></i>
 </button> 
-      <br />
-      <br />
-      <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
- </button> 
+      
     </div>
   )
 }
