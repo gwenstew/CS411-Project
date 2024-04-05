@@ -32,7 +32,7 @@ function Pantry() {
 
         setIngredientArray(tempArray);
     } else {
-        alert("Error, couldn't retrieve pantry")
+        alert("Your pantry is empty! Please add an ingredient using the button below.")
     }
   }
 
