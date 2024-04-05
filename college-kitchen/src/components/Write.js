@@ -34,7 +34,7 @@ function Write() {
         <input type='text' className="updatebox2" value={inputValue2}
         onChange={(e) => setInputValue2(e.target.value)}/>
       </div>
-      <button className= 'store-button' onClick = {saveData} >Store ingredient</button>
+      <button className= 'store-button' onClick = {saveData} > STORE INGREDIENT </button>
       <br />
       <br />
       <button className='back-pantry' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i> </button>
