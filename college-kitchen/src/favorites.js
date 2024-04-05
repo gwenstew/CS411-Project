@@ -40,11 +40,11 @@ function FavoriteRecipes() {
             <h2>Favorite Recipes</h2>
             <div className="favorites-list">
                     {favorites.map((recipe, index) => (
-                        <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
+                        <div key={recipe.id} className="favorite-item">
                         <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                         <p>{recipe.title}</p>
                         
-                        <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
+                        <button className='favorites-button'>
                               {favorites.some(favorite => favorite.id === recipe.id) ? 
                                   <i class="ri-dislike-line"></i> 
                                   :
