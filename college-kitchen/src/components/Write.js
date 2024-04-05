@@ -28,6 +28,7 @@ function Write() {
 
   return (
     <div>
+       <h1> Store Ingredient </h1>
       <div className="input-container">
         <input type='text' 
         className="updatebox1" 
@@ -40,13 +41,13 @@ function Write() {
         value={inputValue2}
         onChange={(e) => setInputValue2(e.target.value)}
         placeholder="Enter quantity"/>
-      </div>
-      <button className= 'store-button' onClick = {saveData} > STORE INGREDIENT </button>
-      <br />
-      <br />
-      <button className='back-pantry' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i> </button>
+            <button className= 'store-button' onClick = {saveData} >< i class="ri-check-line"></i></button>
 
-    </div>
+      </div>
+      <br />
+      <br />
+      <button className='back-home' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i> </button>
+      </div>
   )
 }
 

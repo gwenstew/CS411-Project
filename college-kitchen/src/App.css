@@ -269,7 +269,7 @@ header img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .ingredient-item {
@@ -314,8 +314,14 @@ li {
   margin-right: 10px; 
   font-family: "Barlow", sans-serif;
   border-radius: 5px;
-
 }
+
+.add-item,
+.store-button {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 
 .delete {
   background-color: red;
@@ -326,7 +332,9 @@ li {
   align-items: center; 
   display: flex;
   gap: 10px; 
+  margin-top: 20px;
 }
+
 .updatebox1,
 .updatebox2 {
   padding: 10px;
