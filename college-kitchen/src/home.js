@@ -18,6 +18,7 @@ function Home() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
+
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,7 +38,7 @@ function Home() {
       });
       setIngredientArray(tempArray);
     } else {
-      alert("Error, couldn't retrieve pantry")
+      alert("Your pantry is empty! Please add an ingredient using the button below.")
     }
   }
 
