@@ -51,8 +51,8 @@ function FavoriteRecipes() {
         <div className="container">
             <h2>Favorite Recipes</h2>
             <div className="favorites-list">
-                    {favorites.map((recipe, index) => (
-                        <div key={recipe.id} className="favorite-item">
+                    {favorites.map((recipe) => (
+                        <div key={recipe.id} className="favorite-item"> onClick={() => fetchData(recipe.id)}
                         <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                         <p>{recipe.title}</p>
                         
