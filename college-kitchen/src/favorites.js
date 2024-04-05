@@ -17,19 +17,18 @@ function FavoriteRecipes() {
     }, []);
     
     const fetchData = async () => {
-        const db = getDatabase(app);
-        const dbRef = ref(db, `users/${userID}/recipes/favorites`);
-        const snapshot = await get(dbRef);
-        if (snapshot.exists()) {
-            const favoriteRecipes = Object.values(snapshot.val()).map(myFireId => {
-                return {
-                  ...snapshot.val([myFireId]),
-                  favoriteId: myFireId
-                }
-              });
-            setFavorites(favoriteRecipes);
-        } else {
-            alert("Error, couldn't retrieve favorite recipes");
+        try{
+            const db = getDatabase(app);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites`);
+            const snapshot = await get(dbRef);
+            if (snapshot.exists()) {
+                const favoriteRecipes = Object.entries(snapshot.val()).map(([key, value]) => ({ id: key, ...value }));
+                setFavorites(favoriteRecipes);
+            } else {
+                console.log("No favorite recipes found");
+            }
+        } catch (error){
+            console.log("Error fetching favorite recipes:", error);
         }
     }
         
@@ -37,11 +36,15 @@ function FavoriteRecipes() {
 
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
-        const db = getDatabase(app);
-        const dbRef = ref(db, "recipes/favorites/" + recipeIdParam);
-        await remove(dbRef.child(recipeIdParam));
-        setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
-        window.location.reload();
+        try{
+            const db = getDatabase(app);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeIdParam}`);
+            await remove(dbRef);
+            setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
+            console.log("Recipe deleted successfully");
+        } catch (error) {
+            console.error("Error deleting recipe:", error);
+        }
     }
 
     return (
@@ -53,12 +56,8 @@ function FavoriteRecipes() {
                         <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                         <p>{recipe.title}</p>
                         
-                        <button className='favorites-button'>
-                              {favorites.some(favorite => favorite.id === recipe.id) ? 
-                                  <i class="ri-dislike-line"></i> 
-                                  :
-                                  <i className="ri-heart-line"></i> 
-                              }
+                        <button className='dislike-button' onClick={() => deleteRecipe(recipe.id)}>
+                            <i className="ri-dislike-line"></i> 
                         </button>
                       </div>
                     ))}
