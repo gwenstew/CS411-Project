@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect,} from 'react';
 import { Link } from 'react-router-dom';
 import { getDatabase, ref, get} from "firebase/database";
 // import { useNavigate } from 'react-router-dom';
@@ -18,9 +18,9 @@ function Home() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-/* This chunk is unneccessary.
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = async () => {
@@ -39,7 +39,7 @@ function Home() {
     } else {
       alert("Error, couldn't retrieve pantry")
     }
-  }*/
+  }
 
   const handleSearch = async () => {
     try {
