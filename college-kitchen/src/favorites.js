@@ -5,6 +5,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
+    const user = auth.currentUser;
+    const userID = user?.uid;
     const [favorites, setFavorites] = useState([]);
     // const [recipeArray, setRecipeArray] = useState([]);
 
