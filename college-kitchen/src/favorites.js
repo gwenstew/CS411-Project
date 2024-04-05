@@ -53,9 +53,7 @@ function FavoriteRecipes() {
                             <td>
                                 <button className='add-recipe' onClick={() => navigate("/add-recipe")}>Add Recipe</button>
                                 <br />
-                                <button className='delete' onClick={() => deleteRecipe(recipe.recipeId)}>
-                                    Delete
-                                </button>
+                                <button className='delete' onClick={() => deleteRecipe(recipe.recipeIdParam)}>Delete</button>
                             </td>
                         </tr>
                     ))}
