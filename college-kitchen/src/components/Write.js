@@ -28,15 +28,16 @@ function Write() {
 
   return (
     <div>
-      <input type='text' value={inputValue1}
-      onChange={(e) => setInputValue1(e.target.value)}/>
-      <input type='text' value={inputValue2}
-      onChange={(e) => setInputValue2(e.target.value)}/>
-
-      <button className= 'store-button' onClick = {saveData} >Store ingredient</button>
+      <div className="input-container">
+        <input type='text' className="updatebox1" value={inputValue1}
+        onChange={(e) => setInputValue1(e.target.value)}/>
+        <input type='text' className="updatebox2" value={inputValue2}
+        onChange={(e) => setInputValue2(e.target.value)}/>
+      </div>
+      <button className= 'store-button' onClick = {saveData} > STORE INGREDIENT </button>
       <br />
       <br />
-      <button className='back-pantry' onClick={ () => navigate("/pantry")}> Back To Pantry </button>
+      <button className='back-pantry' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i> </button>
 
     </div>
   )

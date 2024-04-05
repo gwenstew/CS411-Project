@@ -68,10 +68,12 @@ function Pantry() {
           </li>
         ))}
       </ul>
-      <button className='add-item' onClick={() => navigate("/write")}> Add Item To Pantry </button> 
+      <button className='add-item' onClick={() => navigate("/write")}>< i class="ri-add-box-line"></i>
+</button> 
       <br />
       <br />
-      <button className='back-home' onClick={() => navigate("/home")}> Back To Homepage </button> 
+      <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
+ </button> 
     </div>
   )
 }
