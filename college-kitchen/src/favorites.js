@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function FavoriteRecipes() {
     const navigate = useNavigate();
     const [favorites, setFavorites] = useState([]);
-    const [recipeArray, setRecipeArray] = useState([]);
+    // const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
