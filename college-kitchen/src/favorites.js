@@ -17,11 +17,16 @@ function FavoriteRecipes() {
           const dbRef = ref(db, "recipes/favorites");
           const snapshot = await get(dbRef);
           if (snapshot.exists()) {
-            const favoriteRecipes = Object.values(snapshot.val());
+            const favoriteRecipes = Object.values(snapshot.val()).map(myFireId => {
+                return {
+                  ...snapshot.val([myFireId]),
+                  favoriteId: myFireId
+                }
+              });
             setFavorites(favoriteRecipes);
-          //} else {
-            //alert("Error, couldn't retrieve favorite recipes");
-          //}
+            } else {
+            alert("Error, couldn't retrieve favorite recipes");
+            }
           }
         };
 
