@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import app from "./firebase";
+import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, remove } from "firebase/database";
 import { useNavigate, Link } from 'react-router-dom';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const userID = user?.uid;
     const [favorites, setFavorites] = useState([]);
     // const [recipeArray, setRecipeArray] = useState([]);
 
@@ -14,7 +18,7 @@ function FavoriteRecipes() {
     
     const fetchData = async () => {
         const db = getDatabase(app);
-        const dbRef = ref(db, "recipes/favorites");
+        const dbRef = ref(db, `users/${userID}/recipes/favorites`);
         const snapshot = await get(dbRef);
         if (snapshot.exists()) {
             const favoriteRecipes = Object.values(snapshot.val()).map(myFireId => {
