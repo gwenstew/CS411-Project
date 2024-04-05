@@ -35,7 +35,7 @@ function SignIn() {
     }, [navigate]);
 
     return (
-      <div className="mainContainer">
+  <div className="mainContainer">
       <div className={'titleContainer'}>
           <div>Welcome!</div>
       </div>
@@ -45,7 +45,7 @@ function SignIn() {
               <button className="google-button" onClick={handleGoogleSignIn}>Sign in with Google</button>
           )}
       </div>
-  </div>
+    </div>
 );
 }
   export default SignIn;

@@ -128,6 +128,7 @@ function Home() {
               <button className="back-button" onClick={handleGoBack}>Recipes</button>
               <h2>{selectedRecipe.title}</h2>
               <img src={selectedRecipe.image} alt={selectedRecipe.title}/>
+          
               <h3>Ingredients:</h3>
               <ul>
                 {selectedRecipe.extendedIngredients.map(ingredient => (

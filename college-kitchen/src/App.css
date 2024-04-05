@@ -41,6 +41,7 @@
   font-size: 30px;
 }
 
+
 .titleContainer {
   display: flex;
   flex-direction: column;
@@ -50,7 +51,10 @@
   justify-content: center;
   font-family: "Barlow", sans-serif;
   font-size: 60px;
-
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: bisque;
 }
 
 .resultContainer,
@@ -156,13 +160,18 @@
   color: #fff;
   border: none;
   cursor: pointer;
-  margin-left: 10px; /* Add margin between pantry and favorites buttons */
+  margin-left: 10px;
   text-decoration: none;
   border-radius: 5px;
 }
 
 .search-container {
   margin-top: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: bisque;
 }
 
 .search-container input[type="text"] {
@@ -208,7 +217,7 @@
   border-radius: 10px;
   padding: 10px;
   overflow: hidden;
-  background-color: #ede8e5; /* Dark green fill color */
+  background-color: #ede8e5; 
 }
 
 .recipe-item img {
@@ -219,6 +228,7 @@
 .recipe-item p {
   text-align: center;
 }
+
 
 /* PANTRY STYLING */
 .container {
@@ -231,6 +241,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px; 
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: bisque;
 }
 
 
@@ -275,13 +289,12 @@ li {
 
 .input-container {
   justify-content: center;
-  align-items: center; /* Center vertically */
+  align-items: center; 
   display: flex;
-  gap: 10px; /* Adjust the gap between inputs as needed */
+  gap: 10px; 
 }
 .updatebox1,
 .updatebox2 {
-
   padding: 10px;
   border: solid tomato;
   border-radius: 5px;
