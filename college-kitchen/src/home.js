@@ -18,7 +18,7 @@ function Home() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-/* This chunk is unneccessary.
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -37,9 +37,9 @@ function Home() {
       });
       setIngredientArray(tempArray);
     } else {
-      alert("Error, couldn't retrieve pantry")
+      alert("Your pantry is empty! Please add an ingredient using the button below.")
     }
-  }*/
+  }
 
   const handleSearch = async () => {
     try {
