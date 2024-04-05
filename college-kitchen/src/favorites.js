@@ -28,7 +28,7 @@ function FavoriteRecipes() {
             alert("Error, couldn't retrieve favorite recipes");
             }
           }
-        };
+        
 
 
     // deletes a recipe
@@ -64,5 +64,4 @@ function FavoriteRecipes() {
     );
 
 }
-
 export default FavoriteRecipes;
