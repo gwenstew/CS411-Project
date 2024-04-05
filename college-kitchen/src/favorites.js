@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import app from "./firebase";
 import { getDatabase, ref, get, remove } from "firebase/database";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
@@ -27,7 +27,8 @@ function FavoriteRecipes() {
     const deleteRecipe = async (recipeIdParam) => {
         const db = getDatabase(app);
         const dbRef = ref(db, "recipes/favorites/" + recipeIdParam);
-        await remove(dbRef);
+        await remove(dbRef.child(recipeIdParam));
+        setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
         window.location.reload();
     }
 
@@ -44,12 +45,14 @@ function FavoriteRecipes() {
                     </tr>
                 </thead>
                 <tbody>
-                    {recipeArray.map((recipe, index) => (
+                    {favorites.map((recipe, index) => (
                         <tr key={index}>
                             <td>{recipe.recipeName}</td>
                             <td>{recipe.ingredients}</td>
                             <td>{recipe.instructions}</td>
                             <td>
+                                <button className='add-recipe' onClick={() => navigate("/add-recipe")}>Add Recipe</button>
+                                <br />
                                 <button className='delete' onClick={() => deleteRecipe(recipe.recipeId)}>
                                     Delete
                                 </button>
@@ -58,7 +61,6 @@ function FavoriteRecipes() {
                     ))}
                 </tbody>
             </table>
-            <button className='add-recipe' onClick={() => navigate("/add-recipe")}>Add Recipe</button>
             <br />
             <br />
             <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
