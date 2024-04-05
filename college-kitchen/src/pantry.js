@@ -40,7 +40,8 @@ function Pantry() {
     const db = getDatabase(app);
     const dbRef = ref(db, `users/${userID}/pantry/ingredients/`+ingredientIdParam);
     await remove(dbRef);
-    window.location.reload();
+    fetchData();
+    //window.location.reload();
   }
 
   useEffect(() => {
