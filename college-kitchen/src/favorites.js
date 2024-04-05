@@ -12,11 +12,11 @@ function FavoriteRecipes() {
         fetchData();
     }, []);
     
-        const fetchData = async () => {
-          const db = getDatabase(app);
-          const dbRef = ref(db, "recipes/favorites");
-          const snapshot = await get(dbRef);
-          if (snapshot.exists()) {
+    const fetchData = async () => {
+        const db = getDatabase(app);
+        const dbRef = ref(db, "recipes/favorites");
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
             const favoriteRecipes = Object.values(snapshot.val()).map(myFireId => {
                 return {
                   ...snapshot.val([myFireId]),
@@ -24,10 +24,10 @@ function FavoriteRecipes() {
                 }
               });
             setFavorites(favoriteRecipes);
-            } else {
+        } else {
             alert("Error, couldn't retrieve favorite recipes");
-            }
-          }
+        }
+    }
         
 
 
