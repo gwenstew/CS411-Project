@@ -1,71 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import app from "./firebase";
+import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, remove } from "firebase/database";
 import { useNavigate, Link } from 'react-router-dom';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const userID = user?.uid;
     const [favorites, setFavorites] = useState([]);
     // const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-          const db = getDatabase(app);
-          const dbRef = ref(db, "recipes/favorites");
-          const snapshot = await get(dbRef);
-          if (snapshot.exists()) {
-            const favoriteRecipes = Object.values(snapshot.val());
-            setFavorites(favoriteRecipes);
-          } else {
-            alert("Error, couldn't retrieve favorite recipes");
-          }
-        };
         fetchData();
-      }, []);
+    }, []);
+    
+    const fetchData = async () => {
+        try{
+            const db = getDatabase(app);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites`);
+            const snapshot = await get(dbRef);
+            if (snapshot.exists()) {
+                const favoriteRecipes = Object.entries(snapshot.val()).map(([key, value]) => ({ id: key, ...value }));
+                setFavorites(favoriteRecipes);
+            } else {
+                console.log("No favorite recipes found");
+            }
+        } catch (error){
+            console.log("Error fetching favorite recipes:", error);
+        }
+    }
+        
+
 
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
-        const db = getDatabase(app);
-        const dbRef = ref(db, "recipes/favorites/" + recipeIdParam);
-        await remove(dbRef.child(recipeIdParam));
-        setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
-        window.location.reload();
+        try{
+            const db = getDatabase(app);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeIdParam}`);
+            await remove(dbRef);
+            setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
+            console.log("Recipe deleted successfully");
+        } catch (error) {
+            console.error("Error deleting recipe:", error);
+        }
     }
 
     return (
         <div className="container">
             <h2>Favorite Recipes</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Ingredients</th>
-                        <th>Instructions</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="favorites-list">
                     {favorites.map((recipe, index) => (
-                        <tr key={index}>
-                            <td>{recipe.recipeName}</td>
-                            <td>{recipe.ingredients}</td>
-                            <td>{recipe.instructions}</td>
-                            <td>
-                                <button className='add-recipe' onClick={() => navigate("/add-recipe")}>Add Recipe</button>
-                                <br />
-                                <button className='delete' onClick={() => deleteRecipe(recipe.recipeIdParam)}>Delete</button>
-                            </td>
-                        </tr>
+                        <div key={recipe.id} className="favorite-item">
+                        <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                        <p>{recipe.title}</p>
+                        
+                        <button className='dislike-button' onClick={() => deleteRecipe(recipe.id)}>
+                            <i className="ri-dislike-line"></i> 
+                        </button>
+                      </div>
                     ))}
-                </tbody>
-            </table>
-            <br />
-            <br />
+            </div>
             <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
 
 }
-
 export default FavoriteRecipes;
-
