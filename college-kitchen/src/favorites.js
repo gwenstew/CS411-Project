@@ -35,16 +35,7 @@ function FavoriteRecipes() {
     return (
         <div className="container">
             <h2>Favorite Recipes</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Ingredients</th>
-                        <th>Instructions</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="favorites-list">
                     {favorites.map((recipe, index) => (
                         <tr key={index}>
                             <td>{recipe.recipeName}</td>
@@ -57,10 +48,6 @@ function FavoriteRecipes() {
                             </td>
                         </tr>
                     ))}
-                </tbody>
-            </table>
-            <br />
-            <br />
             <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
