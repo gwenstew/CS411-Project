@@ -4,10 +4,7 @@ import { auth } from "./firebase";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const user = {
-    name: 'John Doe',
-    email: 'john@example.com',
-  };
+  const currentUser = auth.currentUser
 
   const navigate = useNavigate();
 
@@ -25,8 +22,8 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-details">
-        <h2>{user.name}</h2>
-        <p>Email: {user.email}</p>
+        <h2>{currentUser.displayName}</h2>
+        <p>Email: {currentUser.email}</p>
         {/* Add more user details here */}
         <button className='logout-button' onClick={handleSignOut}>Logout</button>
       </div>
