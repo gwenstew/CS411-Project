@@ -263,6 +263,18 @@ header img {
   text-align: center;
 }
 
+.instructions {
+  border-radius: 10px;
+  padding: 10px;
+  background-color:#ede8e5;;
+}
+
+.ingredients-container {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: bisque;
+}
+
 
 /* PANTRY STYLING */
 .container {

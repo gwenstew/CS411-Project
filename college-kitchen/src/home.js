@@ -129,16 +129,22 @@ function Home() {
               <button className="back-button" onClick={handleGoBack}>Recipes</button>
               <h2>{selectedRecipe.title}</h2>
               <img src={selectedRecipe.image} alt={selectedRecipe.title}/>
-          
+              
+              <div className='ingredients-container'>
               <h3>Ingredients:</h3>
               <ul>
                 {selectedRecipe.extendedIngredients.map(ingredient => (
                   <li key={ingredient.id}>{ingredient.original}</li>
                 ))}
               </ul>
-              <h3>Instructions:</h3>
-              <div className='instructions' dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
-            </div>
+              </div>
+
+              <div className='instructions'>
+                <h3>Instructions:</h3>
+                <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
+              </div>
+
+              </div>
           ) : (
             <div>
               <h2>Recipes</h2>
