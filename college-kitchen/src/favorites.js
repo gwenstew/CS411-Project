@@ -20,7 +20,7 @@ function FavoriteRecipes() {
     const fetchData = async () => {
         try{
             const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/recipes/favorites`);
+            const dbRef = ref(db, `users/${userID}/favorites`);
             const snapshot = await get(dbRef);
             if (snapshot.exists()) {
                 const favoritesData = snapshot.val();
@@ -44,7 +44,7 @@ function FavoriteRecipes() {
     const deleteRecipe = async (recipeIdParam) => {
         try{
             const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeIdParam}`);
+            const dbRef = ref(db, `users/${userID}/favorites/${recipeIdParam}`);
             await remove(dbRef);
             setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
             console.log("Recipe deleted successfully");
