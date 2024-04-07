@@ -20,7 +20,7 @@ function FavoriteRecipes() {
     const fetchData = async () => {
         try{
             const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/favorites`);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites`);
             const snapshot = await get(dbRef);
             if (snapshot.exists()) {
                 const favoritesData = snapshot.val();
@@ -44,7 +44,7 @@ function FavoriteRecipes() {
     const deleteRecipe = async (recipeIdParam) => {
         try{
             const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/favorites/${recipeIdParam}`);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeIdParam}`);
             await remove(dbRef);
             setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
             console.log("Recipe deleted successfully");
@@ -62,9 +62,8 @@ function FavoriteRecipes() {
                         <Link to={`/recipe/${recipe.id}`}>
                             <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                         </Link>
-                        <p>{recipe.title}</p>
                         <UpdateFavorite recipeId={recipe.id} />
-                        <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Delete</button>
+                        <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Remove from Favorites</button>
                     </div>
                 ))}
             </div>
