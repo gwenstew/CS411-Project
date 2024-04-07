@@ -154,6 +154,9 @@ function Home() {
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
                     
+                    <Link to={{ pathname: "/favorites", state: { favorites: favorites } }} className="favorites-button">
+                    <i className="ri-heart-line"></i>
+                    </Link>
                     <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
                           {favorites.some(favorite => favorite.id === recipe.id) ? 
                               <i class="ri-dislike-line"></i> 

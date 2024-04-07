@@ -5,12 +5,13 @@ import { getDatabase, ref, get, remove } from "firebase/database";
 import { useNavigate, Link } from 'react-router-dom';
 import UpdateFavorite from './components/updateFavorite';
 
-function FavoriteRecipes() {
+function Favorites(props) {
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
     const userID = user?.uid;
-    const [favorites, setFavorites] = useState([]);
+    const { favorites } = props.location.state;
+    const [setFavorites] = useState([]);
     // const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
@@ -72,4 +73,4 @@ function FavoriteRecipes() {
     );
 
 }
-export default FavoriteRecipes;
+export default Favorites;
