@@ -59,9 +59,7 @@ function FavoriteRecipes() {
                         </Link>
                         <p>{recipe.title}</p>
                         <UpdateFavorite recipeId={recipe.id} />
-                        <button className='delete' onClick={() => deleteRecipe(recipe.id)}>
-                            Delete
-                        </button>
+                        <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Delete</button>
                     </div>
                 ))}
             </div>
