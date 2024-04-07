@@ -51,19 +51,20 @@ function FavoriteRecipes() {
         <div className="container">
             <h2>Favorite Recipes</h2>
             <div className="favorites-list">
-            <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
-      </button> 
-                    {favorites.map((recipe) => (
-                        <div key={recipe.id} className="favorite-item"> onClick={() => fetchData(recipe.id)}
-                        <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                {favorites.map((recipe, index) => (
+                    <div key={recipe.id} className="favorite-item">
+                        <Link to={`/recipe/${recipe.id}`}>
+                            <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                        </Link>
                         <p>{recipe.title}</p>
-                        
-                        <button className='dislike-button' onClick={() => deleteRecipe(recipe.id)}>
-                            <i className="ri-dislike-line"></i> 
+                        <UpdateFavorite recipeId={recipe.id} /> {/* Render the UpdateFavorite component with the recipeId */}
+                        <button className='delete' onClick={() => deleteRecipe(recipe.id)}>
+                            Delete
                         </button>
-                      </div>
-                    ))}
+                    </div>
+                ))}
             </div>
+            <button className='back-home' onClick={() => navigate("/home")}>Back To Homepage</button>
         </div>
     );
 
