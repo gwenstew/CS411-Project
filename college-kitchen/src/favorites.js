@@ -23,9 +23,14 @@ function FavoriteRecipes() {
             const dbRef = ref(db, `users/${userID}/recipes/favorites`);
             const snapshot = await get(dbRef);
             if (snapshot.exists()) {
-                const favoriteRecipes = Object.entries(snapshot.val()).map(([key, value]) => ({ id: key, ...value }));
+                const favoritesData = snapshot.val();
+                const favoriteRecipes = Object.keys(favoritesData).map(recipeId => ({
+                    id: recipeId,
+                    ...favoritesData[recipeId]
+                }));
                 setFavorites(favoriteRecipes);
             } else {
+                setFavorites([]);
                 console.log("No favorite recipes found");
             }
         } catch (error){
