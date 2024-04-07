@@ -22,8 +22,9 @@ async function writeFavorites() {
             const favoritesRef = ref(userRef, "favorites"); 
             await set(favoritesRef, {}); // Create the favorites node under the user node
         }
+        return Promise.resolve();
     } catch (error) {
-        console.log("User is not authenticated:", error);
+        return Promise.reject(error);
     }
 }
 
