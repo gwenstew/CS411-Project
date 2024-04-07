@@ -3,7 +3,7 @@ import app from "./firebase";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, remove } from "firebase/database";
 import { useNavigate, Link } from 'react-router-dom';
-import UpdateFavorite from './updateFavorite';
+import UpdateFavorite from './components/updateFavorite';
 
 function FavoriteRecipes() {
     const navigate = useNavigate();
@@ -58,7 +58,7 @@ function FavoriteRecipes() {
                             <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                         </Link>
                         <p>{recipe.title}</p>
-                        <UpdateFavorite recipeId={recipe.id} /> {/* Render the UpdateFavorite component with the recipeId */}
+                        <UpdateFavorite recipeId={recipe.id} />
                         <button className='delete' onClick={() => deleteRecipe(recipe.id)}>
                             Delete
                         </button>
