@@ -1,7 +1,7 @@
 import React, { useState, useEffect,} from 'react';
 import { Link } from 'react-router-dom';
 import { getDatabase, ref, get} from "firebase/database";
-// import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import app from "./firebase";
 import { getAuth } from "firebase/auth";
 
@@ -83,12 +83,20 @@ function Home() {
     setSelectedRecipe(null);
   };
 
-  const toggleFavorite = (recipeId, e) => {
-
+  const toggleFavorite = async (recipeId, e) => {
     const index = favorites.findIndex(recipe => recipe.id === recipeId);
     if (index === -1) {
       const recipeToAdd = recipes.find(recipe => recipe.id === recipeId);
-      setFavorites([...favorites, recipeToAdd]);
+      // Save the favorited recipe to the database
+      try {
+        const db = getDatabase(app);
+        const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeId}`);
+        await set(dbRef, recipeToAdd);
+        // Navigate to the favorite recipes page
+        navigate("/favorites");
+    } catch (error) {
+        console.error('Error saving favorite recipe:', error);
+    }
     } else {
       const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
       setFavorites(newFavorites);
@@ -159,9 +167,6 @@ function Home() {
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
                     
-                    <Link to={{ pathname: "/favorites", state: { favorites: favorites } }} className="favorites-button">
-                    <i className="ri-heart-line"></i>
-                    </Link>
                     <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
                           {favorites.some(favorite => favorite.id === recipe.id) ? 
                               <i class="ri-dislike-line"></i> 
