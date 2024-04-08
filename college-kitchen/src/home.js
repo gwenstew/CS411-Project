@@ -117,6 +117,11 @@ function Home() {
             placeholder="Enter ingredients..."
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch();
+              }
+            }}
           />
           <button onClick={handleSearch}><i className="ri-search-line"></i></button>
           <button className="mic-button" onClick={handleSpeech}>
