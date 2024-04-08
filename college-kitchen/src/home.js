@@ -90,13 +90,14 @@ function Home() {
       // Save the favorited recipe to the database
       try {
         const db = getDatabase(app);
-        const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeId}`);
-        await set(dbRef, recipeToAdd);
-        // Navigate to the favorite recipes page
-        navigate("/favorites");
-    } catch (error) {
+        const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
+        const newFavoriteRef = push(favoritesRef);
+        await set(newFavoriteRef, recipeToAdd);
+        // Fetch updated favorites from the database
+        fetchData();
+      } catch (error) {
         console.error('Error saving favorite recipe:', error);
-    }
+      }
     } else {
       const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
       setFavorites(newFavorites);
