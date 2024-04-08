@@ -196,7 +196,6 @@ header img {
   cursor: pointer;
   border-radius: 5px;
   padding: 10px;
-  overflow: hidden;
   position: relative;
 }
 
@@ -208,7 +207,6 @@ header img {
   overflow: hidden;
   background-color: bisque;
   position: relative; 
-  z-index: 1;
 }
 
 .search-container input[type="text"] {
