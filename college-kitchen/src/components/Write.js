@@ -28,6 +28,8 @@ function Write() {
 
   return (
     <div>
+      <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
+      </button> 
        <h1> Store Ingredient </h1>
       <div className="input-container">
         <input type='text' 
@@ -46,7 +48,7 @@ function Write() {
       </div>
       <br />
       <br />
-      <button className='back-home' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i> </button>
+      <button className='back-pantry-button' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i> </button>
       </div>
   )
 }
