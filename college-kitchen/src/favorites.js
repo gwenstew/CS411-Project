@@ -9,8 +9,8 @@ function Favorites() {
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
-    const userID = user?.uid;
-    //const userID = user ? user.uid : null;
+    //const userID = user?.uid;
+    const userID = user ? user.uid : null;
     const [favorites, setFavorites] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -19,6 +19,12 @@ function Favorites() {
     // const [recipeArray, setRecipeArray] = useState([]);
     // const [ingredientArray, setIngredientArray] = useState([]);
     // const [ingredients, setIngredients] = useState('');
+
+    useEffect(() => {
+        if (userID) {
+            fetchData();
+        }
+    }, [userID]);
 
     const fetchData = async () => {
         const db = getDatabase(app);
@@ -49,10 +55,6 @@ function Favorites() {
         console.log("Recipe deleted successfully");
     }
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-  
 
     const handleRecipeClick = async (recipeId) => {
         try {
