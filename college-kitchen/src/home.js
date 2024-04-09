@@ -22,7 +22,6 @@ function Home() {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   const fetchData = async () => {
@@ -150,7 +149,7 @@ function Home() {
         <div className='recipes'>
           {selectedRecipe ? (
             <div>
-              <button className="back-button" onClick={handleGoBack}>Recipes</button>
+              <button className="back-button" onClick={handleGoBack}><i class="ri-arrow-left-s-line"></i></button>
               <h2>{selectedRecipe.title}</h2>
               <img src={selectedRecipe.image} alt={selectedRecipe.title}/>
               
@@ -188,10 +187,14 @@ function Home() {
                   </div>
                 ))}
               </div>
+              {recipes.length > 0 && (
+              <div className='pagination-container'>
               <div className="pagination">
-                <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+                <button className= "more-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
+                <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
               </div>
+              </div>
+              )}
             </div>
           )}
         </div>
