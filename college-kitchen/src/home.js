@@ -189,10 +189,11 @@ function Home() {
               </div>
               {recipes.length > 0 && (
               <div className='pagination-container'>
-              <div className="pagination">
-                <button className= "more-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
-                <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
-              </div>
+                <div className="pagination">
+                  <button className= "more-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
+                  <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
+                </div>
+                <div className="page-number">Page {currentPage} of {totalPages}</div>
               </div>
               )}
             </div>

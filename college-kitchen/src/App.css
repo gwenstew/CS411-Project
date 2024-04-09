@@ -274,6 +274,11 @@ header img {
   margin-right: 10px;
 }
 
+.page-number {
+  font-size: 0.7em;
+  text-align: center;
+}
+
 /* RECIPE GRID STYLING */
 .grid-container {
   display: grid;
@@ -309,7 +314,6 @@ header img {
   padding: 10px;
   background-color: bisque;
 }
-
 
 /* PANTRY STYLING */
 .container {
