@@ -10,7 +10,7 @@ function Favorites() {
     const auth = getAuth();
     const user = auth.currentUser;
     const userID = user?.uid;
-    const [favorites, setFavorites] = useState();
+    const [favorites, setFavorites] = useState([]);
     // const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
