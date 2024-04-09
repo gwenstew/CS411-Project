@@ -3,7 +3,7 @@ import app from "./firebase";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, remove } from "firebase/database";
 import { useNavigate, Link } from 'react-router-dom';
-import UpdateFavorite from './components/updateFavorite';
+//import UpdateFavorite from './components/updateFavorite';
 
 function Favorites() {
     const navigate = useNavigate();
