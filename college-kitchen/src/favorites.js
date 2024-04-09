@@ -9,7 +9,8 @@ function Favorites() {
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
-    const userID = user ? user.uid : null;
+    const userID = user?.uid;
+    //const userID = user ? user.uid : null;
     const [favorites, setFavorites] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
