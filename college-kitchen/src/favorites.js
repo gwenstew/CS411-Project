@@ -6,16 +6,17 @@ import { useNavigate, Link } from 'react-router-dom';
 //import UpdateFavorite from './components/updateFavorite';
 
 function Favorites() {
-    const navigate = useNavigate();
+    
     const auth = getAuth();
     const user = auth.currentUser;
-    //const userID = user?.uid;
     const userID = user ? user.uid : null;
     const [favorites, setFavorites] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    //const userID = user?.uid;
+    // const navigate = useNavigate();
     // const [recipeArray, setRecipeArray] = useState([]);
     // const [ingredientArray, setIngredientArray] = useState([]);
     // const [ingredients, setIngredients] = useState('');
@@ -85,11 +86,11 @@ function Favorites() {
                 <Link to="/profile" className="profile-button">
                     <i className="ri-user-line"></i>
                 </Link>
-            </div>
-            <div className="features-container">
                 <Link to="/home" className="back-home">
                     <i className="ri-home-2-line"></i>
                 </Link>
+            </div>
+            <div className="features-container">
                 <Link to="/pantry" className="pantry-button">
                     <i className="ri-shopping-basket-line"></i>
                 </Link>
@@ -120,7 +121,7 @@ function Favorites() {
                         <div>
                             <h2>Favorite Recipes</h2>
                             <div className="grid-container">
-                            {favorites.slice((currentPage - 1) * 10, currentPage * 10).map(recipe => (
+                            {favorites.map(recipe => (
                                 <div key={recipe.id} className="favorite-item" onClick={() => handleRecipeClick(recipe.id)}>
                                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                                     <p>{recipe.title}</p>
