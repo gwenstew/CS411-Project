@@ -42,26 +42,45 @@ function Home() {
     }
   }
 
-  const fetchFavorite = async () => {
-    try {
-        const db = getDatabase(app);
-        const dbRef = ref(db, `users/${userID}/recipes/favorites`);
-        const snapshot = await get(dbRef);
-        if (snapshot.exists()) {
-            const favoritesData = snapshot.val();
-            const favoriteRecipes = Object.keys(favoritesData).map(recipeId => ({
-                id: recipeId,
-                ...favoritesData[recipeId]
-            }));
-            setFavorites(favoriteRecipes);
-        } else {
-            setFavorites([]);
-            console.log("No favorite recipes found");
+  const toggleFavorite = async (recipeId, e) => {
+    e.stopPropagation();
+    const index = favorites.findIndex(recipe => recipe.id === recipeId);
+    if (index === -1) {
+        const recipeToAdd = recipes.find(recipe => recipe.id === recipeId);
+        // Save the favorited recipe to the database
+        try {
+            const db = getDatabase(app);
+            const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
+            const newFavoriteRef = push(favoritesRef);
+            await set(newFavoriteRef, recipeToAdd);
+            // Update favorites state
+            setFavorites([...favorites, recipeToAdd]);
+        } catch (error) {
+            console.error('Error saving favorite recipe:', error);
         }
-    } catch (error) {
-        console.log("Error fetching favorite recipes:", error);
+    } else {
+        const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
+        // Remove the favorited recipe from the database
+        try {
+            const db = getDatabase(app);
+            const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
+            const favoriteSnapshot = await get(favoritesRef);
+            if (favoriteSnapshot.exists()) {
+                const favoriteData = favoriteSnapshot.val();
+                const favoriteKey = Object.keys(favoriteData).find(key => favoriteData[key].id === recipeId);
+                if (favoriteKey) {
+                    const favoriteRecipeRef = ref(db, `users/${userID}/recipes/favorites/${favoriteKey}`);
+                    await set(favoriteRecipeRef, null);
+                }
+            }
+            // Update favorites state
+            setFavorites(newFavorites);
+        } catch (error) {
+            console.error('Error removing favorite recipe:', error);
+        }
     }
-}
+};
+
 
   const handleSearch = async () => {
     try {
@@ -178,7 +197,7 @@ function Home() {
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
                     
-                    <button className='favorites-button' onClick={(event) => { event.stopPropagation(); fetchFavorite(recipe.id); }}>
+                    <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
                           {favorites.some(favorite => favorite.id === recipe.id) ? 
                               <i class="ri-dislike-line"></i> 
                               :

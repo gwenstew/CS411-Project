@@ -38,8 +38,6 @@ function Favorites() {
         }
     }
         
-
-
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
         try{
