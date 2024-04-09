@@ -43,7 +43,6 @@ function Home() {
   }
 
   const toggleFavorite = async (recipeId, e) => {
-    e.stopPropagation();
     const index = favorites.findIndex(recipe => recipe.id === recipeId);
     if (index === -1) {
         const recipeToAdd = recipes.find(recipe => recipe.id === recipeId);
