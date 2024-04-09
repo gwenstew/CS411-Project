@@ -7,6 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function Favorites() {
     
+    const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
     const userID = user ? user.uid : null;
@@ -16,7 +17,6 @@ function Favorites() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     //const userID = user?.uid;
-    // const navigate = useNavigate();
     // const [recipeArray, setRecipeArray] = useState([]);
     // const [ingredientArray, setIngredientArray] = useState([]);
     // const [ingredients, setIngredients] = useState('');
