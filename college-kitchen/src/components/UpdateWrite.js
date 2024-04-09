@@ -63,7 +63,7 @@ function UpdateWrite() {
         <button className='update' onClick={overwriteData}>UPDATE</button>
         <br />
         <br />
-        <button className='back-pantry' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i></button>
+        <button className='back-pantry-button' onClick={ () => navigate("/pantry")}><i className="ri-shopping-basket-line"></i></button>
     </div>
     )
 }

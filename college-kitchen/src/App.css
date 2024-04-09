@@ -113,6 +113,27 @@
   font-family: "Barlow", sans-serif;
 }
 
+.google-button:hover,
+.back-home:hover,
+.mic-button:hover,
+.back-button:hover,
+.more-button:hover,
+.store-button:hover,
+.logout-button:hover,
+.pantry-button:hover,
+.profile-button:hover,
+.search-button:hover,
+.add-item:hover,
+.back-pantry-button:hover,
+.back-pantry-button2:hover,
+.update:hover {
+  background-color: rgb(215, 81, 57); 
+}
+
+.delete:hover {
+  background-color: rgb(114, 2, 2);
+}
+
 /* HOME PAGE STYLING */
 .container {
   display: flex;
@@ -331,8 +352,7 @@ li {
 .delete,
 .add-item,
 .back-home,
-.store-button,
-.back-pantry {
+.store-button {
   background-color: tomato;
   color: #fff;
   border: none;
@@ -372,7 +392,6 @@ li {
 }
 
 .back-pantry-button {
-  position: absolute;
   padding: 10px;
   background-color: tomato;
   color: #fff;
@@ -380,5 +399,6 @@ li {
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
-  top: 300px;
 }
+
+

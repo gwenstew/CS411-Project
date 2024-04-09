@@ -141,7 +141,7 @@ function Home() {
               }
             }}
           />
-          <button onClick={handleSearch}><i className="ri-search-line"></i></button>
+          <button className='search-button'onClick={handleSearch}><i className="ri-search-line"></i></button>
           <button className="mic-button" onClick={handleSpeech}>
             <i className="ri-mic-line"></i>
           </button>
