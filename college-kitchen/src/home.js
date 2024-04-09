@@ -17,12 +17,13 @@ function Home() {
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [favorites, setFavorites] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentPage]);
 
   const fetchData = async () => {
     const db = getDatabase(app);
@@ -46,13 +47,22 @@ function Home() {
     try {
       const allIngredients = [...ingredientArray.map(ingredient => ingredient.ingredientName), ...ingredients.split(',')];
       const ingredientsString = allIngredients.join(',');
-      const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredientsString)}&number=10&sort=max-used-ingredients&apiKey=19d968e0a6084103addc8057885c3dfc`);
+      const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredientsString)}&number=50&sort=max-used-ingredients&apiKey=19d968e0a6084103addc8057885c3dfc`);
       const data = await response.json();
+      setTotalPages(Math.ceil(data.length / 10)); // Calculate total pages based on the total number of recipes
       setRecipes(data);
       setSelectedRecipe(null); 
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
   };
 
   const handleSpeech = () => {
@@ -163,7 +173,7 @@ function Home() {
             <div>
               <h2>Recipes</h2>
               <div className="grid-container">
-                {recipes.map(recipe => (
+              {recipes.slice((currentPage - 1) * 10, currentPage * 10).map(recipe => (
                   <div key={recipe.id} className="recipe-item" onClick={() => handleRecipeClick(recipe.id)}>
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
@@ -177,6 +187,10 @@ function Home() {
                     </button>
                   </div>
                 ))}
+              </div>
+              <div className="pagination">
+                <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
               </div>
             </div>
           )}
