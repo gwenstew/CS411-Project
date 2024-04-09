@@ -19,46 +19,39 @@ function Favorites() {
     // const [ingredientArray, setIngredientArray] = useState([]);
     // const [ingredients, setIngredients] = useState('');
 
-    useEffect(() => {
-        if (userID) {
-            fetchData();
-        }
-    }, [userID]);
-    
     const fetchData = async () => {
-        try{
-            const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/recipes/favorites`);
-            const snapshot = await get(dbRef);
-            if (snapshot.exists()) {
-                const favoritesData = snapshot.val();
-                const favoriteRecipes = Object.keys(favoritesData).map(recipeId => ({
-                    id: recipeId,
-                    ...favoritesData[recipeId]
-                }));
-                setFavorites(favoriteRecipes);
-            } else {
-                //setFavorites([]);
-                console.log("No favorite recipes found");
-            }
-        } catch (error){
-            console.log("Error fetching favorite recipes:", error);
+        const db = getDatabase(app);
+        const dbRef = ref(db, `users/${userID}/recipes/favorites`);
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+            const favoritesData = snapshot.val();
+            const favoriteRecipes = Object.keys(favoritesData).map(recipeId => {
+                return {
+                    ...favoritesData[recipeId],
+                    id: recipeId
+                }
+            });
+            setFavorites(favoriteRecipes);
+        } else {
+            //setFavorites([]);
+            alert("No favorite recipes found");
         }
     }
         
     // deletes a recipe
     const deleteRecipe = async (recipeIdParam) => {
-        try{
-            const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/recipes/favorites/`+recipeIdParam);
-            await remove(dbRef);
-            //setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
-            fetchData();
-            console.log("Recipe deleted successfully");
-        } catch (error) {
-            console.error("Error deleting recipe:", error);
-        }
+        const db = getDatabase(app);
+        const dbRef = ref(db, `users/${userID}/recipes/favorites/`+recipeIdParam);
+        await remove(dbRef);
+        //setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
+        fetchData();
+        console.log("Recipe deleted successfully");
     }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+  
 
     const handleRecipeClick = async (recipeId) => {
         try {
@@ -91,11 +84,11 @@ function Favorites() {
                 </Link>
             </div>
             <div className="features-container">
-                <Link to="/pantry" className="pantry-button">
-                    <i className="ri-shopping-basket-line"></i>
-                </Link>
                 <Link to="/home" className="home-button">
                 <i className="ri-home-2-line"></i> 
+                </Link>
+                <Link to="/pantry" className="pantry-button">
+                    <i className="ri-shopping-basket-line"></i>
                 </Link>
             </div>
             <div className='favorite-recipes'>
@@ -129,20 +122,19 @@ function Favorites() {
                                 <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                                 <p>{recipe.title}</p>
                                 
-                                <UpdateFavorite recipeId={recipe.id} />
                                 <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Remove from Favorites</button>
                             </div>
                         ))}
                         </div>
-                    {recipes.length > 0 && (
-                    <div className='pagination-container'>
-                        <div className="pagination">
-                            <button className= "more-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
-                            <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
+                        {recipes.length > 0 && (
+                            <div className='pagination-container'>
+                                <div className="pagination">
+                                    <button className= "more-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
+                                    <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
+                                </div>
+                            <div className="page-number">Page {currentPage} of {totalPages}</div>
                         </div>
-                        <div className="page-number">Page {currentPage} of {totalPages}</div>
-                    </div>
-                    )}
+                        )}
                     </div> 
                 )}
             </div>
