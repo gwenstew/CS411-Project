@@ -42,6 +42,27 @@ function Home() {
     }
   }
 
+  const fetchFavorite = async () => {
+    try {
+        const db = getDatabase(app);
+        const dbRef = ref(db, `users/${userID}/recipes/favorites`);
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+            const favoritesData = snapshot.val();
+            const favoriteRecipes = Object.keys(favoritesData).map(recipeId => ({
+                id: recipeId,
+                ...favoritesData[recipeId]
+            }));
+            setFavorites(favoriteRecipes);
+        } else {
+            setFavorites([]);
+            console.log("No favorite recipes found");
+        }
+    } catch (error) {
+        console.log("Error fetching favorite recipes:", error);
+    }
+}
+
   const handleSearch = async () => {
     try {
       const allIngredients = [...ingredientArray.map(ingredient => ingredient.ingredientName), ...ingredients.split(',')];
@@ -92,26 +113,6 @@ function Home() {
     setSelectedRecipe(null);
   };
 
-  const toggleFavorite = async (recipeId, e) => {
-    const index = favorites.findIndex(recipe => recipe.id === recipeId);
-    if (index === -1) {
-      const recipeToAdd = recipes.find(recipe => recipe.id === recipeId);
-      // Save the favorited recipe to the database
-      try {
-        const db = getDatabase(app);
-        const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
-        const newFavoriteRef = push(favoritesRef);
-        await set(newFavoriteRef, recipeToAdd);
-        // Fetch updated favorites from the database
-        fetchData();
-      } catch (error) {
-        console.error('Error saving favorite recipe:', error);
-      }
-    } else {
-      const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
-      setFavorites(newFavorites);
-    }
-  };
 
   return (
     <div className="container">
@@ -177,7 +178,7 @@ function Home() {
                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                     <p>{recipe.title}</p>
                     
-                    <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
+                    <button className='favorites-button' onClick={(event) => { event.stopPropagation(); fetchFavorite(recipe.id); }}>
                           {favorites.some(favorite => favorite.id === recipe.id) ? 
                               <i class="ri-dislike-line"></i> 
                               :
