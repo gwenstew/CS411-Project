@@ -121,7 +121,7 @@ function Favorites() {
                         <div>
                             <h2>Favorite Recipes</h2>
                             <div className="grid-container">
-                            {favorites.map(recipe => (
+                            {favorites.slice((currentPage - 1) * 10, currentPage * 10).map(recipe => (
                                 <div key={recipe.id} className="favorite-item" onClick={() => handleRecipeClick(recipe.id)}>
                                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                                     <p>{recipe.title}</p>
