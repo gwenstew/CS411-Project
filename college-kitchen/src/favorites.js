@@ -87,8 +87,9 @@ function Favorites() {
                 </Link>
             </div>
             <div className="features-container">
-                <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
-                </button>
+                <Link to="/home" className="back-home">
+                    <i className="ri-home-2-line"></i>
+                </Link>
                 <Link to="/pantry" className="pantry-button">
                     <i className="ri-shopping-basket-line"></i>
                 </Link>
