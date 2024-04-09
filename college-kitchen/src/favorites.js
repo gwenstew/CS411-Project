@@ -33,10 +33,8 @@ function Favorites() {
             if (snapshot.exists()) {
                 const favoritesData = snapshot.val();
                 const favoriteRecipes = Object.keys(favoritesData).map(recipeId => ({
-                    return {
-                        ...favoritesData[recipeId],
-                        id: recipeId
-                    }     
+                    id: recipeId,
+                    ...favoritesData[recipeId]
                 }));
                 setFavorites(favoriteRecipes);
             } else {
