@@ -81,61 +81,65 @@ function Favorites() {
 
     return (
         <div className="container">
-            <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
-            </button>
-            <button className='pantry-button' onClick={() => navigate("/pantry")}>< i class="ri-shopping-basket-line"></i>
-            </button>
             <div className="profile">
                 <Link to="/profile" className="profile-button">
                     <i className="ri-user-line"></i>
                 </Link>
             </div>
-            <div className='favorite-recipes'>
-                {selectedRecipe ? (
-                    <div>
-                        <button className="back-button" onClick={handleGoBack}><i class="ri-arrow-left-s-line"></i></button>
-                        <h2>{selectedRecipe.title}</h2>
-                        <img src={selectedRecipe.image} alt={selectedRecipe.title}/>
+            <div className="features-container">
+                <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
+                </button>
+                <Link to="/pantry" className="pantry-button">
+                    <i className="ri-shopping-basket-line"></i>
+                </Link>
+            </div>
+            <div className="content">
+                <div className='favorite-recipes'>
+                    {selectedRecipe ? (
+                        <div>
+                            <button className="back-button" onClick={handleGoBack}><i class="ri-arrow-left-s-line"></i></button>
+                            <h2>{selectedRecipe.title}</h2>
+                            <img src={selectedRecipe.image} alt={selectedRecipe.title}/>
               
-                        <div className='ingredients-container'>
-                        <h3>Ingredients:</h3>
-                        <ul>
-                            {selectedRecipe.extendedIngredients.map(ingredient => (
-                                <li key={ingredient.id}>{ingredient.original}</li>
-                            ))}
-                        </ul>
-                        </div>
-
-                        <div className='instructions'>
-                            <h3>Instructions:</h3>
-                            <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
-                        </div>
-
-                    </div>
-                ) : (
-                    <div>
-                        <h2>Favorite Recipes</h2>
-                        <div className="favorites-list">
-                        {favorites.slice((currentPage - 1) * 10, currentPage * 10).map(recipe => (
-                            <div key={recipe.id} className="favorite-item" onClick={() => handleRecipeClick(recipe.id)}>
-                                <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
-                                <p>{recipe.title}</p>
-                                
-                                <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Remove from Favorites</button>
+                            <div className='ingredients-container'>
+                            <h3>Ingredients:</h3>
+                            <ul>
+                                {selectedRecipe.extendedIngredients.map(ingredient => (
+                                    <li key={ingredient.id}>{ingredient.original}</li>
+                                ))}
+                            </ul>
                             </div>
-                        ))}
+
+                            <div className='instructions'>
+                                <h3>Instructions:</h3>
+                                <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
+                            </div>
                         </div>
-                        {recipes.length > 0 && (
-                            <div className='pagination-container'>
-                                <div className="pagination">
-                                    <button className= "less-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
-                                    <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
+                    ) : (
+                        <div>
+                            <h2>Favorite Recipes</h2>
+                            <div className="grid-container">
+                            {favorites.slice((currentPage - 1) * 10, currentPage * 10).map(recipe => (
+                                <div key={recipe.id} className="favorite-item" onClick={() => handleRecipeClick(recipe.id)}>
+                                    <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
+                                    <p>{recipe.title}</p>
+                                
+                                    <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Remove from Favorites</button>
                                 </div>
-                            <div className="page-number">Page {currentPage} of {totalPages}</div>
-                        </div>
-                        )}
-                    </div> 
-                )}
+                            ))}
+                            </div>
+                            {recipes.length > 0 && (
+                                <div className='pagination-container'>
+                                    <div className="pagination">
+                                        <button className= "less-button" onClick={handlePrevPage} disabled={currentPage === 1}><i class="ri-arrow-left-s-line"></i></button>
+                                        <button className= "more-button" onClick={handleNextPage} disabled={currentPage === totalPages}><i class="ri-arrow-right-s-line"></i></button>
+                                    </div>
+                                <div className="page-number">Page {currentPage} of {totalPages}</div>
+                            </div>
+                            )}
+                        </div> 
+                    )}
+                </div>
             </div>
         </div>
     );
