@@ -81,14 +81,11 @@ function Favorites() {
         <div className="container">
             <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
             </button>
+            <button className='pantry-button' onClick={() => navigate("/pantry")}>< i class="ri-shopping-basket-line"></i>
+            </button>
             <div className="profile">
-            <Link to="/profile" className="profile-button">
-                <i className="ri-user-line"></i>
-                </Link>
-            </div>
-            <div className="features-container">
-                <Link to="/pantry" className="pantry-button">
-                    <i className="ri-shopping-basket-line"></i>
+                <Link to="/profile" className="profile-button">
+                    <i className="ri-user-line"></i>
                 </Link>
             </div>
             <div className='favorite-recipes'>
