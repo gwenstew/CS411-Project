@@ -33,12 +33,14 @@ function Favorites() {
             if (snapshot.exists()) {
                 const favoritesData = snapshot.val();
                 const favoriteRecipes = Object.keys(favoritesData).map(recipeId => ({
-                    id: recipeId,
-                    ...favoritesData[recipeId]
+                    return {
+                        ...favoritesData[recipeId],
+                        id: recipeId
+                    }     
                 }));
                 setFavorites(favoriteRecipes);
             } else {
-                setFavorites([]);
+                //setFavorites([]);
                 console.log("No favorite recipes found");
             }
         } catch (error){
@@ -50,9 +52,10 @@ function Favorites() {
     const deleteRecipe = async (recipeIdParam) => {
         try{
             const db = getDatabase(app);
-            const dbRef = ref(db, `users/${userID}/recipes/favorites/${recipeIdParam}`);
+            const dbRef = ref(db, `users/${userID}/recipes/favorites/`+recipeIdParam);
             await remove(dbRef);
-            setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
+            //setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
+            fetchData();
             console.log("Recipe deleted successfully");
         } catch (error) {
             console.error("Error deleting recipe:", error);
@@ -80,7 +83,6 @@ function Favorites() {
     const handleGoBack = () => {
         setSelectedRecipe(null);
     };
-
 
 
     return (
