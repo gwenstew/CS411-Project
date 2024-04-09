@@ -9,13 +9,15 @@ function Favorites() {
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
-    const userID = user?.uid;
+    const userID = user ? user.uid : null;
     const [favorites, setFavorites] = useState([]);
     // const [recipeArray, setRecipeArray] = useState([]);
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (userID) {
+            fetchData();
+        }
+    }, [userID]);
     
     const fetchData = async () => {
         try{
