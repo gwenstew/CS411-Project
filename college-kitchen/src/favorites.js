@@ -123,7 +123,10 @@ function Favorites() {
                                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                                     <p>{recipe.title}</p>
                                 
-                                    <button className='delete' onClick={() => deleteRecipe(recipe.id)}><i class="ri-dislike-line"></i></button>
+                            <button className='delete-favorite-button' onClick={(e) => { e.stopPropagation(); deleteRecipe(recipe.id); }}>
+                            <i className="ri-dislike-line"></i>
+                            </button>
+
                                 </div>
                             ))}
                             </div>
