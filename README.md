@@ -1,4 +1,4 @@
-College Kitchen App
+# College Kitchen
 
 Prerequisites
 Node.js and npm installed on your machine
