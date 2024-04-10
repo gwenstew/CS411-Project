@@ -125,7 +125,7 @@ function Favorites() {
                                     <img src={`https://spoonacular.com/recipeImages/${recipe.id}-636x393.jpg`} alt={recipe.title} />
                                     <p>{recipe.title}</p>
                                 
-                                    <button className='delete' onClick={() => deleteRecipe(recipe.id)}>Remove from Favorites</button>
+                                    <button className='delete' onClick={() => deleteRecipe(recipe.id)}><i class="ri-dislike-line"></i></button>
                                 </div>
                             ))}
                             </div>

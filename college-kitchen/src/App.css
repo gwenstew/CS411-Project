@@ -113,6 +113,7 @@
   font-family: "Barlow", sans-serif;
 }
 
+/* BUTTONS */
 .google-button:hover,
 .back-home:hover,
 .mic-button:hover,
@@ -126,7 +127,8 @@
 .add-item:hover,
 .back-pantry-button:hover,
 .back-pantry-button2:hover,
-.update:hover {
+.update:hover,
+.favorites-button:hover {
   background-color: rgb(215, 81, 57); 
 }
 

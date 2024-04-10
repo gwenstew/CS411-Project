@@ -3,7 +3,7 @@ import app from "./firebase";
 import {getDatabase, ref, get, remove} from "firebase/database";
 import { useNavigate } from 'react-router-dom';
 import { getAuth } from "firebase/auth";
-
+import { Link } from 'react-router-dom';
 
 function Pantry() {
 
@@ -50,6 +50,11 @@ function Pantry() {
 
   return (
     <div className="container">
+      <div className="features-container">
+      <Link to="/favorites" className="favorites-button">
+          <i className="ri-heart-line"></i> 
+        </Link>
+            </div>
       <h1> Pantry </h1>
       <button className='add-item' onClick={() => navigate("/write")}>ADD INGREDIENT  < i class="ri-add-line"></i>
       </button> 
