@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import app from "./firebase";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, get, remove } from "firebase/database";
+import { getDatabase, ref, get, set, remove } from "firebase/database";
 import { useNavigate, Link } from 'react-router-dom';
 //import UpdateFavorite from './components/updateFavorite';
 
@@ -45,12 +45,22 @@ function Favorites() {
     }
         
     // deletes a recipe
-    const deleteRecipe = async (recipeIdParam) => {
+    const deleteRecipe = async (recipeId) => {
+        const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
+        // Remove the favorited recipe from the database
         const db = getDatabase(app);
-        const dbRef = ref(db, `users/${userID}/recipes/favorites/`+recipeIdParam);
-        await remove(dbRef);
-        //setFavorites(favorites.filter(recipe => recipe.id !== recipeIdParam));
-        fetchData();
+        const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
+        const favoriteSnapshot = await get(favoritesRef);
+        if (favoriteSnapshot.exists()) {
+            const favoriteData = favoriteSnapshot.val();
+            const favoriteKey = Object.keys(favoriteData).find(key => favoriteData[key].id === recipeId);
+            if (favoriteKey) {
+                const favoriteRecipeRef = ref(db, `users/${userID}/recipes/favorites/${favoriteKey}`);
+                await set(favoriteRecipeRef, null);
+        }
+        }
+        // Update favorites state
+        setFavorites(newFavorites);
         console.log("Recipe deleted successfully");
     }
 
