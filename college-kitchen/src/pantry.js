@@ -50,6 +50,8 @@ function Pantry() {
 
   return (
     <div className="container">
+      <button className='back-home' onClick={() => navigate("/home")}>< i class="ri-home-2-line"></i>
+            </button>
       <div className="features-container">
       <Link to="/favorites" className="favorites-button">
           <i className="ri-heart-line"></i> 
