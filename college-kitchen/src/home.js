@@ -47,17 +47,21 @@ function Home() {
     if (index === -1) {
         const recipeToAdd = recipes.find(recipe => recipe.id === recipeId);
         // Save the favorited recipe to the database
-        try {
+        const isRecipeAlreadyFavorited = await isRecipeFavorited(recipeId);
+        if (!isRecipeAlreadyFavorited) {
+          try {
             const db = getDatabase(app);
             const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
             const newFavoriteRef = push(favoritesRef);
             await set(newFavoriteRef, recipeToAdd);
             // Update favorites state
             setFavorites([...favorites, recipeToAdd]);
-        } catch (error) {
+          } catch (error) {
             console.error('Error saving favorite recipe:', error);
+          }
         }
     } else {
+        console.log('Recipe already favorited.');
         const newFavorites = favorites.filter(recipe => recipe.id !== recipeId);
         // Remove the favorited recipe from the database
         try {
@@ -78,6 +82,22 @@ function Home() {
             console.error('Error removing favorite recipe:', error);
         }
     }
+};
+
+const isRecipeFavorited = async (recipeId) => {
+  try {
+      const db = getDatabase(app);
+      const favoritesRef = ref(db, `users/${userID}/recipes/favorites`);
+      const favoriteSnapshot = await get(favoritesRef);
+      if (favoriteSnapshot.exists()) {
+          const favoriteData = favoriteSnapshot.val();
+          return Object.values(favoriteData).some(recipe => recipe.id === recipeId);
+      }
+      return false;
+  } catch (error) {
+      console.error('Error checking if recipe is favorited:', error);
+      return false;
+  }
 };
 
 
@@ -198,7 +218,7 @@ function Home() {
                     
                     <button className='favorites-button' onClick={(event) => { event.stopPropagation(); toggleFavorite(recipe.id); }}>
                           {favorites.some(favorite => favorite.id === recipe.id) ? 
-                              <i class="ri-dislike-line"></i> 
+                              <i className="ri-dislike-line"></i> 
                               :
                               <i className="ri-heart-line"></i> 
                           }
