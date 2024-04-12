@@ -22,6 +22,7 @@ function Home() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [currentPage]);
 
   const fetchData = async () => {

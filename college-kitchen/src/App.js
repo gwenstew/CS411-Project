@@ -5,7 +5,6 @@ import Home from './home';
 import SignIn from './googleSignIn';
 import Write from "./components/Write";
 import Read from "./components/Read";
-import Update from "./components/Update";
 import UpdateWrite from "./components/UpdateWrite";
 import Pantry from "./pantry";
 import FavoriteRecipes from "./favorites";
@@ -29,11 +28,9 @@ function App() {
           <Route path="/home" element={<Home />} /> 
           <Route path="/write" element={<Write/>}/>
           <Route path="/read" element={<Read/>}/>
-          <Route path="/update" element={<Update/>}/>
           <Route path="/updatewrite/:firebaseId" element={ <UpdateWrite /> } />
           <Route path="/pantry" element={<Pantry/>}/>
           <Route path="/favorites" element={<FavoriteRecipes/>}/>
-          {/* <Route path="/" element={<SignOut/>}/> */}
           <Route path="/profile" element={<Profile/>}/>
 
         </Routes>
